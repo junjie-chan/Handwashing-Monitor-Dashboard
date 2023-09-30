@@ -35,24 +35,32 @@
     </div>
 
     <div id="donuts_container">
-        <div>
+        <div class="donut_container">
             <canvas id="total"></canvas>
         </div>
 
-        <div>
+        <div class="donut_container">
             <canvas id="month"></canvas>
         </div>
 
-        <div>
+        <div class="donut_container">
             <canvas id="week"></canvas>
         </div>
 
-        <div>
+        <div class="donut_container">
             <canvas id="day"></canvas>
         </div>
     </div>
 
     <script>
+        var label_element = document.querySelector('#labels_container div:first-of-type')
+        var label_style = window.getComputedStyle(label_element);
+        var label_width = label_style.getPropertyValue("width");
+        var donut_containers = document.querySelectorAll('.donut_container');
+        for (var i = 0; i < donut_containers.length; i++) {
+            donut_containers[i].style.width = label_width;
+        }
+
         // Config donut chart canvas' size
         // Get donuts
         var donut1 = document.getElementById("total");
