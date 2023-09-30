@@ -1,0 +1,19 @@
+body {
+    flex-direction: column;
+}
+#label_container {
+    display: flex;
+    width: 80%;
+}
+#label_container div {
+    width: 19%;
+    margin-right: 8%;
+    border: 3px solid black;
+    /* padding: 1%; */
+}
+#label_container div:last-of-type {
+    margin-right: 0;
+}
+#label_container div p:last-of-type {
+    text-align: center;
+}
