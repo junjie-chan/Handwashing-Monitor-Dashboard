@@ -4,21 +4,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Summary</title>
+    <title>Performance Summary</title>
     <link rel="stylesheet" type="text/css" href="<?= base_url('css/common.css') ?>">
-    <link rel="stylesheet" type="text/css" href="<?= base_url('css/summary.css') ?>">
+    <link rel="stylesheet" type="text/css" href="<?= base_url('css/summary .css') ?>">
 </head>
 
 <body>
-    <div class="container" style="width: 25%; margin-right: 13%;">
+    <div class="container">
+        <h1>Trolley Users You Already Beat Today</h1>
         <canvas id="total_beat"></canvas>
     </div>
 
-    <div class="container" style="width: 25%;">
+    <div class="container">
+        <h1>Hourly Standard You Already Achieved</h1>
         <canvas id="hourly_rate"></canvas>
     </div>
 
-    <!--  -->
     <script>
         // Config the canvas size
         // Get donuts

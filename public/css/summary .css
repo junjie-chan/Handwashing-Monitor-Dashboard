@@ -1,0 +1,9 @@
+h1 {
+    text-align: center;
+}
+.container {
+    width: 25%;
+}
+.container:first-of-type {
+    margin-right: 13%;
+}
