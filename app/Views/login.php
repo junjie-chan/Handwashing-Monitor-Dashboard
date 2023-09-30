@@ -19,9 +19,17 @@
     </div>
 
     <div class="form-field">
-      <button class="btn" type="submit">Log in</button>
+      <button class="btn" type="submit" id="btn">Log in</button>
     </div>
   </form>
+
+  <script>
+    var button = document.getElementById("btn");
+    // Add a click event listener
+    button.addEventListener("click", function() {
+      window.location.href = "<?= base_url('summary') ?>";
+    });
+  </script>
 
 </body>
 
