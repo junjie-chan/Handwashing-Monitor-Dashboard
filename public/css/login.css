@@ -1,16 +1,3 @@
-body {
-    background-color: #EDF6FF;
-    font-family: 'Lato', sans-serif;
-    color: #4A4A4A;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    overflow: hidden;
-    margin: 0;
-    padding: 0;
-}
-
 form {
     width: 250px;
     position: relative;
