@@ -2,8 +2,21 @@ h1 {
     text-align: center;
 }
 .container {
-    width: 25%;
+    width: 34%;
+    z-index: 1;
 }
 .container:first-of-type {
-    margin-right: 13%;
+    margin-right: 10%;
+}
+.percentages {
+    z-index: 2;
+    position: absolute;
+    font-size: 3.5em;
+    margin-top: 15%;
+}
+.percentages:first-of-type {
+    margin-right: 43%;
+}
+.percentages:last-of-type {
+    margin-left: 45%;
 }

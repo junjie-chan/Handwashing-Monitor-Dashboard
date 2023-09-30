@@ -20,6 +20,11 @@
         <canvas id="hourly_rate"></canvas>
     </div>
 
+    <p class="percentages">90%</p>
+    <p class="percentages">20%</p>
+
+    </div>
+
     <script>
         // Config the canvas size
         // Get donuts
