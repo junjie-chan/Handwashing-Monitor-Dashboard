@@ -59,29 +59,8 @@
         var donut_containers = document.querySelectorAll('.donut_container');
         for (var i = 0; i < donut_containers.length; i++) {
             donut_containers[i].style.width = label_width;
+            donut_containers[i].style.height = label_width;
         }
-
-        // Config donut chart canvas' size
-        // Get donuts
-        var donut1 = document.getElementById("total");
-        var donut2 = document.getElementById("month");
-        var donut3 = document.getElementById("week");
-        var donut4 = document.getElementById("day");
-        // Get the computed style of donuts
-        var style1 = window.getComputedStyle(donut1);
-        var style2 = window.getComputedStyle(donut2);
-        var style3 = window.getComputedStyle(donut3);
-        var style4 = window.getComputedStyle(donut4);
-        // Get and modify the width value
-        var width1 = style1.getPropertyValue("width").replace('px', '');
-        var width2 = style1.getPropertyValue("width").replace('px', '');
-        var width3 = style1.getPropertyValue("width").replace('px', '');
-        var width4 = style1.getPropertyValue("width").replace('px', '');
-        // Reset the height of donuts
-        donut1.height = width1;
-        donut2.height = width2;
-        donut3.height = width3;
-        donut4.height = width4;
     </script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
