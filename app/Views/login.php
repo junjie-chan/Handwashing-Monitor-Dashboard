@@ -5,6 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>G'Day</title>
+  <link rel="stylesheet" type="text/css" href="<?= base_url('css/common.css') ?>">
   <link rel="stylesheet" type="text/css" href="<?= base_url('css/login.css') ?>">
 
 </head>
