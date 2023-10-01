@@ -35,6 +35,24 @@ body {
     margin-right: 0;
 }
 
+/* Donut Chart Percentages Settings */
+#percentages {
+    width: 80%;
+    z-index: 2;
+    display: flex;
+    position: absolute;
+    margin-top: -3%;
+    font-size: 1.6em;
+}
+#percentages div {
+    width: 19%;
+    margin-right: 8%;
+    text-align: center;
+}
+#percentages div:last-of-type {
+    margin-right: 0%;
+}
+
 /* Line Charts' Settings */
 #lines_container {
     width: 80%;

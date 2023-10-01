@@ -52,6 +52,24 @@
         </div>
     </div>
 
+    <div id="percentages">
+        <div>
+            <p>76%</p>
+        </div>
+
+        <div>
+            <p>68%</p>
+        </div>
+
+        <div>
+            <p>93%</p>
+        </div>
+        <div>
+
+            <p>85%</p>
+        </div>
+    </div>
+
     <div id="lines_container">
         <div class="line_container">
             <canvas id="individual_yesterday" style="width:100%;max-width:600px"></canvas>
