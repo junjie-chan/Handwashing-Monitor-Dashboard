@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Performance Summary</title>
     <link rel="stylesheet" type="text/css" href="<?= base_url('css/common.css') ?>">
-    <link rel="stylesheet" type="text/css" href="<?= base_url('css/dashboard.css') ?>">
+    <link rel="stylesheet" type="text/css" href="<?= base_url('css/dashboard .css') ?>">
 </head>
 
 <body>
@@ -57,9 +57,12 @@
         var label_style = window.getComputedStyle(label_element);
         var label_width = label_style.getPropertyValue("width");
         var donut_containers = document.querySelectorAll('.donut_container');
+        var canvas = document.querySelectorAll('.donut_container canvas');
         for (var i = 0; i < donut_containers.length; i++) {
             donut_containers[i].style.width = label_width;
             donut_containers[i].style.height = label_width;
+            canvas[i].style.height = label_width;
+            canvas[i].style.width = label_width;
         }
     </script>
 

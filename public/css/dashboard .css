@@ -10,7 +10,7 @@ body {
 #labels_container div {
     width: 19%;
     margin-right: 8%;
-    border: 3px solid black;
+    /* border: 3px solid black; */
     /* padding: 1%; */
 }
 #labels_container div:last-of-type {
@@ -26,10 +26,10 @@ body {
     display: flex;
 }
 #donuts_container div {
-    width: 19%;
+    /* width: 19%; */
     z-index: 1;
     margin-right: 8%;
-    border: 3px solid black;
+    /* border: 3px solid black; */
 }
 #donuts_container div:last-of-type {
     margin-right: 0;
