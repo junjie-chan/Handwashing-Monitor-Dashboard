@@ -85,7 +85,8 @@ const time = [
   "16:00",
   "17:00",
 ];
-const handwashing_times = [0, 6, 28, 56, 65, 82, 87, 116, 129];
+const handwashing_times = [0, 8, 12, 9, 15, 7, 4, 6, 10];
+const standard = [].concat(...Array(handwashing_times.length).fill([12]));
 
 new Chart("line_chart", {
   type: "line",
@@ -99,6 +100,15 @@ new Chart("line_chart", {
         borderColor: "rgba(0,0,255,0.1)",
         data: handwashing_times,
       },
+      // Draw standard line
+      {
+        fill: false,
+        lineTension: 0,
+        backgroundColor: "rgba(0,0,255,1.0)",
+        borderColor: "rgba(0,0,255,0.1)",
+        data: standard,
+        pointRadius: 0,
+      },
     ],
   },
   options: {
@@ -111,7 +121,7 @@ new Chart("line_chart", {
       ],
       yAxes: [
         {
-          ticks: { min: 0, max: 140 },
+          ticks: { min: 0, max: 20 },
           gridLines: { display: false },
         },
       ],
