@@ -72,3 +72,49 @@ new Chart("day", {
     },
   },
 });
+
+// Create line chart
+const time = [
+  "9:00",
+  "10:00",
+  "11:00",
+  "12:00",
+  "13:00",
+  "14:00",
+  "15:00",
+  "16:00",
+  "17:00",
+];
+const handwashing_times = [0, 6, 28, 56, 65, 82, 87, 116, 129];
+
+new Chart("line_chart", {
+  type: "line",
+  data: {
+    labels: time,
+    datasets: [
+      {
+        fill: false,
+        lineTension: 0,
+        backgroundColor: "rgba(0,0,255,1.0)",
+        borderColor: "rgba(0,0,255,0.1)",
+        data: handwashing_times,
+      },
+    ],
+  },
+  options: {
+    // legend: { display: false },
+    scales: {
+      xAxes: [
+        {
+          gridLines: { display: false },
+        },
+      ],
+      yAxes: [
+        {
+          ticks: { min: 0, max: 140 },
+          gridLines: { display: false },
+        },
+      ],
+    },
+  },
+});

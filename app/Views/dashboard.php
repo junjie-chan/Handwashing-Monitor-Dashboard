@@ -52,6 +52,9 @@
         </div>
     </div>
 
+    <canvas id="line_chart" style="width:100%;max-width:600px"></canvas>
+
+    <!-- Donut charts adjustment -->
     <script>
         var label_element = document.querySelector('#labels_container div:first-of-type')
         var label_style = window.getComputedStyle(label_element);
