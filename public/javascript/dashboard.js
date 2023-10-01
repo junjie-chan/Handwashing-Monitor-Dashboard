@@ -85,34 +85,43 @@ const time = [
   "16:00",
   "17:00",
 ];
-const handwashing_times = [0, 8, 12, 9, 15, 7, 4, 6, 10];
-const standard = [].concat(...Array(handwashing_times.length).fill([12]));
+const individual = [0, 8, 12, 9, 15, 7, 4, 6, 10];
+// const others = [0, 5, 7, 6, 8, 10, 7, 6.7, 6];
+const standard = [].concat(...Array(individual.length).fill([12]));
 
 new Chart("line_chart", {
   type: "line",
   data: {
     labels: time,
     datasets: [
+      // Draw individual average line
       {
+        label: "My Average",
         fill: false,
         lineTension: 0,
         backgroundColor: "rgba(0,0,255,1.0)",
         borderColor: "rgba(0,0,255,0.1)",
-        data: handwashing_times,
+        data: individual,
       },
       // Draw standard line
       {
+        label: "Standard",
         fill: false,
         lineTension: 0,
-        backgroundColor: "rgba(0,0,255,1.0)",
-        borderColor: "rgba(0,0,255,0.1)",
+        backgroundColor: "rgba(255,0,0,1.0)",
+        borderColor: "rgba(255,0,0,0.1)",
         data: standard,
         pointRadius: 0,
       },
     ],
   },
   options: {
-    // legend: { display: false },
+    legend: {
+      position: "right",
+      labels: {
+        padding: 10,
+      },
+    },
     scales: {
       xAxes: [
         {
