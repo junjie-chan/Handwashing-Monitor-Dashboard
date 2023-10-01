@@ -52,7 +52,16 @@
         </div>
     </div>
 
-    <canvas id="line_chart" style="width:100%;max-width:600px"></canvas>
+    <div id="lines_container">
+        <div class="line_container">
+            <canvas id="individual_yesterday" style="width:100%;max-width:600px"></canvas>
+        </div>
+
+        <div class="line_container">
+            <canvas id="individual_others" style="width:100%;max-width:600px"></canvas>
+        </div>
+    </div>
+
 
     <!-- Donut charts adjustment -->
     <script>

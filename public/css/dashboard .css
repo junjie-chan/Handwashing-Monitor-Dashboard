@@ -25,12 +25,26 @@ body {
     width: 80%;
     display: flex;
 }
-#donuts_container div {
+.donut_container {
     /* width: 19%; */
     z-index: 1;
     margin-right: 8%;
     /* border: 3px solid black; */
 }
-#donuts_container div:last-of-type {
+.donut_container:last-of-type {
+    margin-right: 0;
+}
+
+/* Line Charts' Settings */
+#lines_container {
+    width: 80%;
+    display: flex;
+}
+.line_container {
+    width: 45%;
+    margin-right: 10%;
+    /* border: 3px solid black; */
+}
+.line_container:last-of-type {
     margin-right: 0;
 }
