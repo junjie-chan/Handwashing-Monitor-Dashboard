@@ -12,7 +12,7 @@ function generate_minute_wise_time_series(date, count) {
   var i = 0;
   var series = [];
   for (let i = 0; i < count; i++) {
-    var y = 50; //TODO: to be changed
+    var y = 0; //TODO: to be changed
     series.push([base_value, y]);
     base_value += 300000; // Time Interval
   }
@@ -38,6 +38,20 @@ function generate_other_trolleys() {
     "",
     ...generate_random_number(5, 3, 18),
   ];
+}
+var trigoStrength = 3;
+var iteration = 11;
+function getRandom() {
+  var i = iteration;
+  return (
+    (Math.sin(i / trigoStrength) * (i / trigoStrength) +
+      i / trigoStrength +
+      1) *
+    (trigoStrength * 2)
+  );
+}
+function getRangeRandom(yrange) {
+  return Math.floor(Math.random() * (yrange.max - yrange.min + 1)) + yrange.min;
 }
 
 window.Apex = {
@@ -274,3 +288,40 @@ var column_chart = new ApexCharts(
   column_options
 );
 column_chart.render();
+
+window.setInterval(function () {
+  iteration++;
+
+  // Update Column Chart
+  column_chart.updateSeries([
+    {
+      data: generate_this_trolley(),
+    },
+    {
+      data: generate_other_trolleys(),
+    },
+  ]);
+
+  // TODO: change getRandom() to input new data
+  // Update Line Chart
+  line_chart.updateSeries([
+    {
+      data: [
+        ...line_chart.w.config.series[0].data,
+        [line_chart.w.globals.maxX + 300000, getRandom()],
+      ],
+    },
+    {
+      data: [
+        ...line_chart.w.config.series[1].data,
+        [line_chart.w.globals.maxX + 300000, getRandom()],
+      ],
+    },
+  ]);
+
+  // Update Circle Chart
+  circle_chart.updateSeries([
+    getRangeRandom({ min: 10, max: 200 }),
+    getRangeRandom({ min: 10, max: 100 }),
+  ]);
+}, 3000);
