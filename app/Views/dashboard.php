@@ -11,7 +11,6 @@
 </head>
 
 <body>
-
     <div id="wrapper">
         <div class="content-area">
             <div class="container-fluid">
@@ -53,6 +52,20 @@
                             <div class="box" id="line_container">
                                 <p class="titles">Real-Time Average Performance</p>
                                 <div id="line_chart"> </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-4 p-4 style_box">
+                            <div class="box" id="circle">
+                            </div>
+                        </div>
+
+                        <div class="col-md-8 p-4 style_box">
+                            <div class="box" id="column_container">
+                                <p class="titles">Real-Time Comparison with Top 10 Trolleys</p>
+                                <div id="column_chart"> </div>
                             </div>
                         </div>
                     </div>

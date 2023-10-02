@@ -18,6 +18,27 @@ function generate_minute_wise_time_series(date, count) {
   }
   return series;
 }
+function generate_random_number(count, range_min, range_max) {
+  var data = [];
+  for (let i = 0; i < count; i++) {
+    data.push(Math.random() * (range_max - range_min) + range_min);
+  }
+  return data;
+}
+function generate_this_trolley() {
+  return [
+    ...Array(5).fill(""),
+    generate_random_number(1, 3, 18),
+    ...Array(5).fill(""),
+  ];
+}
+function generate_other_trolleys() {
+  return [
+    ...generate_random_number(5, 3, 18),
+    "",
+    ...generate_random_number(5, 3, 18),
+  ];
+}
 
 window.Apex = {
   colors: ["#FCCF31", "#17ead9", "#f02fc2"],
@@ -210,3 +231,46 @@ var line_chart = new ApexCharts(
   line_options
 );
 line_chart.render();
+
+var column_options = {
+  chart: {
+    type: "bar",
+    offsetY: 20,
+    stacked: true,
+  },
+  stroke: {
+    width: 0,
+  },
+  series: [
+    {
+      name: "This Trolley",
+      data: generate_this_trolley(),
+    },
+    {
+      name: "Other Trolleys",
+      data: generate_other_trolleys(),
+    },
+  ],
+  fill: {
+    type: "gradient",
+    gradient: {
+      shade: "dark",
+      type: "vertical",
+      shadeIntensity: 0.5,
+      inverseColors: false,
+      opacityFrom: 1,
+      opacityTo: 0.8,
+      stops: [10, 100],
+    },
+  },
+  xaxis: {
+    labels: {
+      show: false,
+    },
+  },
+};
+var column_chart = new ApexCharts(
+  document.querySelector("#column_chart"),
+  column_options
+);
+column_chart.render();
