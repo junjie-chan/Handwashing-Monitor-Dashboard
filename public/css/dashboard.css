@@ -1,0 +1,72 @@
+:root {
+    --border-radius: 1rem;
+}
+
+body {
+    background: #1B213B;
+    color: #777;
+    font-family: Montserrat, Arial, sans-serif;
+}
+.body-bg {
+    background: #F3F4FA !important;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+strong {
+    font-weight: 600;
+}
+.box .apexcharts-xaxistooltip {
+    background: #1B213B;
+    color: #fff;
+}
+.content-area {
+    max-width: 1280px;
+    margin: 0 auto;
+}
+.columnbox {
+    padding-right: 15px;
+}
+.apexcharts-legend-series tspan:nth-child(3) {
+    font-weight: bold;
+    font-size: 20px;
+}
+.container-fluid {
+    padding: 0;
+}
+.main {
+    margin: 3% 5%;
+}
+
+.box {
+    background-color: #262D47;
+    padding: 25px 25px;
+}
+
+.style_box {
+    padding-top: 0 !important;
+}
+
+.titles {
+    font-size: 1rem;
+    color: #f3f4faa6;
+    margin-bottom: 10px;
+}
+
+.row div {
+    border-radius: var(--border-radius);
+}
+
+#labels_container .box p:first-of-type {
+    margin-bottom: 0.5rem;
+}
+
+#labels_container .box p:last-of-type {
+    margin-bottom: 0;
+    font-weight: 800;
+    font-size: 1.5rem;
+    text-align: center;
+}
