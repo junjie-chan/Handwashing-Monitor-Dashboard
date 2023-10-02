@@ -21,7 +21,7 @@
         </div>
 
         <div class="form-field">
-          <button class="btn" type="submit" id="btn">Log in</button>
+          <button class="btn" type="submit" id="btn">Login</button>
         </div>
       </form>
     </div>
@@ -32,7 +32,7 @@
     var button = document.getElementById("btn");
     // Add a click event listener
     button.addEventListener("click", function() {
-      window.location.href = "<?= base_url('summary') ?>";
+      window.location.href = "<?= base_url('dashboard') ?>";
     });
 
     // Position the form
