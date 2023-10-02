@@ -48,6 +48,13 @@
                                 </div>
                             </div>
                         </div>
+
+                        <div class="col-md-8 p-4 style_box">
+                            <div class="box" id="line_container">
+                                <p class="titles">Real-Time Average Performance</p>
+                                <div id="line_chart"> </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

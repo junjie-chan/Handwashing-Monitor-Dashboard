@@ -1,5 +1,24 @@
 var chart_height = 200;
 
+function generate_minute_wise_time_series(date, count) {
+  /**
+   * Generate time series data for chart initialization
+   *
+   * @param {string} date - The starting date.
+   * @param {number} count - Number of data couples.
+   * @return {array} [[timestamp, value], ...]
+   */
+  var base_value = new Date(date).getTime();
+  var i = 0;
+  var series = [];
+  for (let i = 0; i < count; i++) {
+    var y = 50; //TODO: to be changed
+    series.push([base_value, y]);
+    base_value += 300000; // Time Interval
+  }
+  return series;
+}
+
 window.Apex = {
   colors: ["#FCCF31", "#17ead9", "#f02fc2"],
   chart: {
@@ -111,3 +130,83 @@ var circle_chart = new ApexCharts(
   circle_options
 );
 circle_chart.render();
+
+var line_options = {
+  chart: {
+    type: "area",
+    stacked: true,
+    animations: {
+      easing: "linear",
+      dynamicAnimation: {
+        speed: 1000,
+      },
+    },
+    events: {
+      animationEnd: function (chartCtx) {
+        const newData1 = chartCtx.w.config.series[0].data.slice();
+        newData1.shift();
+        const newData2 = chartCtx.w.config.series[1].data.slice();
+        newData2.shift();
+        window.setTimeout(function () {
+          chartCtx.updateOptions(
+            {
+              series: [
+                {
+                  data: newData1,
+                },
+                {
+                  data: newData2,
+                },
+              ],
+              // TODO: show on an external p tag
+              // subtitle: {
+              //   text: parseInt(getRandom() * Math.random()).toString(),
+              // },
+            },
+            false,
+            false
+          );
+        }, 300); // NOTE: ???
+      },
+    },
+  },
+  stroke: {
+    curve: "smooth", // Can try straight
+  },
+  series: [
+    {
+      name: "This Trolley",
+      // TODO: use initial data from database
+      data: generate_minute_wise_time_series("01/01/2023 00:00:00", 12),
+    },
+    {
+      name: "Other Trolleys",
+      // TODO: use initial data from database
+      data: generate_minute_wise_time_series("01/01/2023 00:00:00", 12),
+    },
+  ],
+  // Minimum range to display on x-axis
+  xaxis: {
+    type: "datetime",
+    range: 2700000, //60000 = 1 minute
+  },
+  // TODO: change to p tag
+  // subtitle: {
+  //   text: "20",
+  //   floating: true,
+  //   align: "right",
+  //   offsetY: -8,
+  //   style: {
+  //     fontSize: "22px",
+  //   },
+  // },
+  legend: {
+    offsetY: 0.2,
+    offsetX: -20,
+  },
+};
+var line_chart = new ApexCharts(
+  document.querySelector("#line_chart"),
+  line_options
+);
+line_chart.render();
