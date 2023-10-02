@@ -38,10 +38,25 @@
                             </div>
                         </div>
                     </div>
+
+                    <div class="row">
+                        <div class="col-md-4 p-4 style_box">
+                            <div class="box" id="circle_container">
+                                <p class="titles">Comparison with Yesterday</p>
+                                <div id="circle_layer">
+                                    <div id="circleChart"> </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+
+    <script>
+        document.querySelector('.main').style.height = window.innerWidth * 0.9;
+    </script>
 
     <script src='https://cdn.jsdelivr.net/npm/apexcharts'></script>
     <script src='https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js'></script>
