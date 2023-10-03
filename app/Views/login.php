@@ -1,6 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,29 +8,29 @@
 </head>
 
 <body style="background-color: #7fbed7;">
-
   <div id="container">
     <div id="form_box">
-      <form>
-        <h1>Access Code</h1>
-        <div class="form-field">
-          <input type="password" placeholder="Enter the code here" required />
-        </div>
+      <!-- <form action="check" method="post"> -->
+      <?php echo form_open(base_url('check')); ?>
+      <h1>Access Code</h1>
+      <div class="form-field">
+        <input type="password" placeholder="Enter the code here" required name="code" />
+      </div>
 
-        <div class="form-field">
-          <button class="btn" type="submit" id="btn">Log in</button>
-        </div>
-      </form>
+      <div class="form-field">
+        <button class="btn" type="submit" id="btn">Login</button>
+      </div>
+      <!-- </form> -->
+      <?php echo form_close(); ?>
+      <div>
+        <?php echo $error; ?>
+      </div>
     </div>
   </div>
 
 
   <script>
     var button = document.getElementById("btn");
-    // Add a click event listener
-    button.addEventListener("click", function() {
-      window.location.href = "<?= base_url('summary') ?>";
-    });
 
     // Position the form
     var box = document.getElementById('form_box');
@@ -49,5 +46,3 @@
   </script>
 
 </body>
-
-</html>
