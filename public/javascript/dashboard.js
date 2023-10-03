@@ -363,3 +363,10 @@ function generate_records_in_random_time() {
   }, random_interval);
 }
 generate_records_in_random_time();
+
+// Force table container height
+var container = document.querySelector("#line_container");
+var table_container = document.querySelector("#table_container");
+var style = window.getComputedStyle(container);
+var height = style.getPropertyValue("height");
+table_container.style.height = height;

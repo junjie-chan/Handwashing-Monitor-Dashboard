@@ -132,12 +132,6 @@
     <script src="<?= base_url('javascript/dashboard.js') ?>"></script>
     <script>
         document.querySelector('.main').style.height = window.innerWidth * 0.9;
-        // Force table container height
-        var container = document.querySelector('#line_container');
-        var table_container = document.querySelector('#table_container');
-        var style = window.getComputedStyle(container);
-        var height = style.getPropertyValue('height');
-        table_container.style.height = height;
         // Modify table height
         var table = document.querySelector("#table_body");
         var title = document.querySelector("#table_container p");
