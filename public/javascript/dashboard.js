@@ -327,11 +327,12 @@ window.setInterval(function () {
 }, 3000);
 
 // Real-Time Data Generation
-function generate_trolley_records(count) {
+var records_count = 20;
+function generate_trolley_records(count, delete_last_n = false) {
   var table = document.querySelector("tbody");
   for (let i = 0; i < count; i++) {
     // Create new row
-    var new_row = table.insertRow(table.rows.length);
+    var new_row = table.insertRow(0);
     var cell_1 = new_row.insertCell(0);
     var cell_2 = new_row.insertCell(1);
     // Make up id
@@ -344,15 +345,20 @@ function generate_trolley_records(count) {
     var minutes = now.getMinutes().toString().padStart(2, "0");
     var seconds = now.getSeconds().toString().padStart(2, "0");
     cell_2.innerHTML = hours + ":" + minutes + ":" + seconds;
+    // Remove the oldest record
+    if (delete_last_n) {
+      var rows = table.getElementsByTagName("tr");
+      table.removeChild(rows[records_count - 1]);
+    }
   }
 }
 // Initially show 20 records
-generate_trolley_records(20);
+generate_trolley_records(records_count);
 
 function generate_records_in_random_time() {
-  const random_interval = parseInt(generate_random_number(1, 1, 5)) * 1000;
+  const random_interval = parseInt(generate_random_number(1, 1, 3)) * 1000;
   setTimeout(function () {
-    generate_trolley_records(parseInt(generate_random_number(1, 1, 5)));
+    generate_trolley_records(parseInt(generate_random_number(1, 1, 5)), true);
     generate_records_in_random_time();
   }, random_interval);
 }
