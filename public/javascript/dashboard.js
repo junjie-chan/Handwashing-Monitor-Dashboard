@@ -73,6 +73,11 @@ window.Apex = {
     axisBorder: {
       color: "#333",
     },
+    labels: {
+      style: {
+        colors: "#bfbfbf",
+      },
+    },
   },
   fill: {
     type: "gradient",
@@ -84,6 +89,9 @@ window.Apex = {
     show: true,
     position: "top",
     horizontalAlign: "left",
+    labels: {
+      colors: "#bfbfbf",
+    },
     onItemClick: {
       toggleDataSeries: false,
     },
@@ -110,6 +118,9 @@ window.Apex = {
     opposite: true,
     labels: {
       offsetX: -10,
+      style: {
+        colors: "#bfbfbf",
+      },
     },
   },
 };
@@ -249,7 +260,6 @@ line_chart.render();
 var column_options = {
   chart: {
     type: "bar",
-    offsetY: 20,
     stacked: true,
   },
   stroke: {
@@ -391,7 +401,7 @@ function generate_this_trolley_data_in_random_time() {
       "#labels_container .style_box:last-of-type span"
     );
     var num = generate_random_number(1, 5, 12)[0];
-    label.textContent = parseFloat(num).toFixed(2);
+    label.textContent = parseFloat(num).toFixed(1);
     generate_this_trolley_data_in_random_time();
   }, random_interval);
 }
