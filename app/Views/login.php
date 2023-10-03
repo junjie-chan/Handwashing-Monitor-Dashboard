@@ -4,13 +4,32 @@
   <title>G'Day</title>
   <link rel="stylesheet" type="text/css" href="<?= base_url('css/common.css') ?>">
   <link rel="stylesheet" type="text/css" href="<?= base_url('css/login .css') ?>">
+  <style>
+    #error_box {
+      width: 80%;
+      color: #9c0006;
+      font-size: 1.3rem;
+      position: absolute;
+      text-align: center;
+      top: -8rem;
+      border-radius: 0.7rem;
+      background-color: #FFC7CE;
+      margin-left: 10%;
+    }
 
+    #error_box p {
+      margin: 0.8rem 0;
+    }
+  </style>
 </head>
 
 <body style="background-color: #7fbed7;">
   <div id="container">
+    <div id="error_box">
+      <p><?php echo $error; ?></p>
+    </div>
+
     <div id="form_box">
-      <!-- <form action="check" method="post"> -->
       <?php echo form_open(base_url('check')); ?>
       <h1>Access Code</h1>
       <div class="form-field">
@@ -20,11 +39,7 @@
       <div class="form-field">
         <button class="btn" type="submit" id="btn">Login</button>
       </div>
-      <!-- </form> -->
       <?php echo form_close(); ?>
-      <div>
-        <?php echo $error; ?>
-      </div>
     </div>
   </div>
 
