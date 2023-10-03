@@ -41,6 +41,10 @@
             background: none;
             border-radius: 0 !important;
         }
+
+        #table_container {
+            padding-right: 10px;
+        }
     </style>
 
 </head>
