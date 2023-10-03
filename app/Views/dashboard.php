@@ -58,7 +58,26 @@
 
                     <div class="row">
                         <div class="col-md-4 p-4 style_box">
-                            <div class="box" id="circle">
+                            <div class="box" id="table_container">
+                                <div class="scrollbar" id="table_body">
+                                    <!-- <div id="table_box"> -->
+                                    <table>
+                                        <thead>
+                                            <tr>
+                                                <th>Trolley ID</th>
+                                                <th>Time</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>TROLLEY-01</td>
+                                                <td>10:33:23</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <!-- </div> -->
+                                    <div class="force-overflow"></div>
+                                </div>
                             </div>
                         </div>
 
@@ -74,14 +93,24 @@
         </div>
     </div>
 
-    <script>
-        document.querySelector('.main').style.height = window.innerWidth * 0.9;
-    </script>
-
     <script src='https://cdn.jsdelivr.net/npm/apexcharts'></script>
     <script src='https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js'></script>
     <script src="<?= base_url('javascript/dashboard.js') ?>"></script>
-
+    <script>
+        document.querySelector('.main').style.height = window.innerWidth * 0.9;
+        // Force table container height
+        var container = document.querySelector('#line_container');
+        var style = window.getComputedStyle(container);
+        var height = style.getPropertyValue('height');
+        var table_container = document.querySelector('#table_container');
+        table_container.style.height = height;
+        // Force table height
+        var style = window.getComputedStyle(table_container)
+        var height = parseFloat(style.getPropertyValue('height'));
+        var padding_top = parseFloat(style.getPropertyValue('padding-top'));
+        var padding_bottom = parseFloat(style.getPropertyValue('padding-bottom'));
+        document.querySelector('#table_body').style.height = String(height - padding_top - padding_bottom) + 'px';
+    </script>
 </body>
 
 </html>
