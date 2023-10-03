@@ -14,7 +14,6 @@ class Login extends BaseController
         } else {
             return view('login', ['error' => '', 'display' => 'none']);
         }
-        // return view('login', ['error' => '', 'display' => 'none']);
     }
 
     public function check()
@@ -31,11 +30,11 @@ class Login extends BaseController
         } else {
             return view('login', ['error' => 'The access code was incorrect!', 'display' => 'block']);
         }
-        // $code = $this->request->getPost('code');
-        // if ($code == 'deco3801') {
-        //     return view('dashboard');
-        // } else {
-        //     return view('login', ['error' => 'The access code was incorrect!', 'display' => 'block']);
-        // }
+    }
+
+    public function logout()
+    {
+        setcookie('hospital', '', time() - 10000, '/');
+        return redirect()->to(base_url('login'));
     }
 }

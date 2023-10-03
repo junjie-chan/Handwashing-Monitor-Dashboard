@@ -51,9 +51,24 @@
 
 <body>
     <div id="wrapper">
+        <div id="button_container">
+            <a class="box__link button-animation" href="<?php echo base_url('logout') ?>">
+                Logout
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+            </a>
+        </div>
+
+
         <div class="content-area">
             <div class="container-fluid">
                 <div class="main">
+                    <div class="row" id="dashboard_title">
+                        <h3>Performance Dashboard</h3>
+                    </div>
+
                     <div class="row" id="labels_container">
                         <div class="col-md-4 p-4 style_box">
                             <div class="box">

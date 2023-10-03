@@ -1,4 +1,4 @@
-var chart_height = 200;
+var chart_height = 180;
 
 function generate_minute_wise_time_series(date, count) {
   /**
