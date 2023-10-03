@@ -258,11 +258,11 @@ var column_options = {
   series: [
     {
       name: "This Trolley",
-      data: generate_this_trolley(),
+      data: Array(11).fill(0),
     },
     {
       name: "Other Trolleys",
-      data: generate_other_trolleys(),
+      data: Array(11).fill(0),
     },
   ],
   fill: {
@@ -376,3 +376,23 @@ var table_container = document.querySelector("#table_container");
 var style = window.getComputedStyle(container);
 var height = style.getPropertyValue("height");
 table_container.style.height = height;
+
+// Update label data of current trolley
+function generate_this_trolley_data_in_random_time() {
+  const random_interval = parseInt(generate_random_number(1, 2, 5)) * 1000;
+  setTimeout(function () {
+    // Update this trolley total
+    var label = document.querySelector(
+      "#labels_container .style_box:nth-of-type(2) span"
+    );
+    label.textContent = parseInt(label.textContent) + 1;
+    // Update this trolley total
+    var label = document.querySelector(
+      "#labels_container .style_box:last-of-type span"
+    );
+    var num = generate_random_number(1, 5, 12)[0];
+    label.textContent = parseFloat(num).toFixed(2);
+    generate_this_trolley_data_in_random_time();
+  }, random_interval);
+}
+generate_this_trolley_data_in_random_time();

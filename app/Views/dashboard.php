@@ -65,14 +65,14 @@
                         <div class="col-md-4 p-4 style_box">
                             <div class="box">
                                 <p class="titles">This Trolley Total Today</p>
-                                <p>36 times</p>
+                                <p><span>36</span> times</p>
                             </div>
                         </div>
 
                         <div class="col-md-4 p-4 style_box">
                             <div class="box">
                                 <p class="titles">Hourly Performance</p>
-                                <p>8 per hour</p>
+                                <p><span>8</span> times / h</p>
                             </div>
                         </div>
                     </div>
