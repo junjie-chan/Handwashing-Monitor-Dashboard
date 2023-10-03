@@ -6,7 +6,7 @@ class Login extends BaseController
 {
     public function index()
     {
-        return view('login', ['error' => '']);
+        return view('login', ['error' => '', 'display' => 'none']);
     }
 
     public function check()
@@ -15,7 +15,7 @@ class Login extends BaseController
         if ($code == 'deco3801') {
             return view('dashboard');
         } else {
-            return view('login', ['error' => 'The access code was incorrect!']);
+            return view('login', ['error' => 'The access code was incorrect!', 'display' => 'block']);
         }
     }
 }

@@ -15,6 +15,7 @@
       border-radius: 0.7rem;
       background-color: #FFC7CE;
       margin-left: 10%;
+      display: <?php echo $display ?>;
     }
 
     #error_box p {
