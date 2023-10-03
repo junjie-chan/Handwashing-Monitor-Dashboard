@@ -348,3 +348,12 @@ function generate_trolley_records(count) {
 }
 // Initially show 20 records
 generate_trolley_records(20);
+
+function generate_records_in_random_time() {
+  const random_interval = parseInt(generate_random_number(1, 1, 5)) * 1000;
+  setTimeout(function () {
+    generate_trolley_records(parseInt(generate_random_number(1, 1, 5)));
+    generate_records_in_random_time();
+  }, random_interval);
+}
+generate_records_in_random_time();
