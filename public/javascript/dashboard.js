@@ -335,9 +335,9 @@ function generate_trolley_records(count) {
     var cell_1 = new_row.insertCell(0);
     var cell_2 = new_row.insertCell(1);
     // Make up id
-    cell_1.innerHTML =
+    var id_num = (cell_1.innerHTML =
       "TROLLEY-" +
-      parseInt(generate_random_number(1, 1, 100).toString().padStart(2, "0"));
+      parseInt(generate_random_number(1, 1, 100)).toString().padStart(2, "0"));
     // Make up time
     var now = new Date();
     var hours = now.getHours().toString().padStart(2, "0");
