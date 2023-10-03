@@ -90,7 +90,6 @@ h1, h2, h3, h4, h5, h6, strong {
   float: left;
   height: 300px;
   width: 100%;
-  background: #F5F5F5;
   overflow-y: scroll;
   /* border-radius: 0 !important; */
 }
@@ -116,17 +115,3 @@ h1, h2, h3, h4, h5, h6, strong {
   -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, .3);
   background-color: #555;
 }
-
-table {
-  width: 95% !important;
-}
-/* .scrollbar {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-} */
-/* #table_box {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-} */

@@ -7,6 +7,41 @@
     <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css'>
     <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Montserrat'>
     <link rel="stylesheet" href="<?= base_url('css/dashboard.css') ?>">
+    <style>
+        table {
+            width: 95% !important;
+            color: #bfbfbf;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+
+        th {
+            /* For Safari */
+            position: -webkit-sticky;
+            position: sticky;
+            top: 0;
+            padding: 8px 15px;
+        }
+
+        tr:nth-child(even),
+        th {
+            background-color: #383F58;
+        }
+
+        td {
+            padding: 6px;
+            font-size: 0.8rem;
+        }
+
+        #table_body {
+            height: 100%;
+        }
+
+        .scrollbar {
+            background: none;
+            border-radius: 0 !important;
+        }
+    </style>
 
 </head>
 
@@ -73,6 +108,26 @@
                                                 <td>TROLLEY-01</td>
                                                 <td>10:33:23</td>
                                             </tr>
+                                            <tr>
+                                                <td>TROLLEY-01</td>
+                                                <td>10:33:23</td>
+                                            </tr>
+                                            <tr>
+                                                <td>TROLLEY-01</td>
+                                                <td>10:33:23</td>
+                                            </tr>
+                                            <tr>
+                                                <td>TROLLEY-01</td>
+                                                <td>10:33:23</td>
+                                            </tr>
+                                            <tr>
+                                                <td>TROLLEY-01</td>
+                                                <td>10:33:23</td>
+                                            </tr>
+                                            <tr>
+                                                <td>TROLLEY-01</td>
+                                                <td>10:33:23</td>
+                                            </tr>
                                         </tbody>
                                     </table>
                                     <!-- </div> -->
@@ -100,20 +155,10 @@
         document.querySelector('.main').style.height = window.innerWidth * 0.9;
         // Force table container height
         var container = document.querySelector('#line_container');
+        var table_container = document.querySelector('#table_container');
         var style = window.getComputedStyle(container);
         var height = style.getPropertyValue('height');
-        var table_container = document.querySelector('#table_container');
         table_container.style.height = height;
-        // Force table height
-        var style = window.getComputedStyle(table_container)
-        var height = parseFloat(style.getPropertyValue('height'));
-        var padding_top = parseFloat(style.getPropertyValue('padding-top'));
-        var padding_bottom = parseFloat(style.getPropertyValue('padding-bottom'));
-        document.querySelector('#table_body').style.height = String(height - padding_top - padding_bottom) + 'px';
-        // Set table width
-        var styleElement = document.createElement('style');
-        styleElement.textContent = 'table { width: 95% !important; }';
-        document.head.appendChild(styleElement);
     </script>
 </body>
 
