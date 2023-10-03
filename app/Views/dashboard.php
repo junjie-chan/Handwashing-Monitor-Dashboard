@@ -66,7 +66,7 @@
             <div class="container-fluid">
                 <div class="main">
                     <div class="row" id="dashboard_title">
-                        <h3>Performance Dashboard</h3>
+                        <h3>Dashboard of Handwashing Activities</h3>
                     </div>
 
                     <div class="row" id="labels_container">
