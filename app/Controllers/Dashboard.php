@@ -6,6 +6,11 @@ class Dashboard extends BaseController
 {
     public function index(): string
     {
-        return view('dashboard');
+        $cookie = json_decode(get_cookie('hospital'));
+        if ($cookie and $cookie->expiry > time()) {
+            return view('dashboard');
+        } else {
+            return view('login', ['error' => '', 'display' => 'none']);
+        }
     }
 }
