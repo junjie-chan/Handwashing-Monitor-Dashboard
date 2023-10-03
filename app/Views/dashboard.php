@@ -98,7 +98,8 @@
                     <div class="row">
                         <div class="col-md-4 p-4 style_box">
                             <div class="box" id="table_container">
-                                <div class="scrollbar" id="table_body">
+                                <p class="titles">Real-Time Records</p>
+                                <div class="scrollbar" id="table_body" style="height: 100%;">
                                     <table>
                                         <thead>
                                             <tr>
@@ -137,6 +138,15 @@
         var style = window.getComputedStyle(container);
         var height = style.getPropertyValue('height');
         table_container.style.height = height;
+        // Modify table height
+        var table = document.querySelector("#table_body");
+        var title = document.querySelector("#table_container p");
+        var title_style = window.getComputedStyle(title);
+        var title_h = parseFloat(title_style.getPropertyValue("height"));
+        var title_mb = parseFloat(title_style.getPropertyValue("margin-bottom"));
+        var table_style = window.getComputedStyle(table);
+        var table_h = parseFloat(table_style.getPropertyValue("height"));
+        table.style.height = String(table_h - title_h - title_mb) + "px";
     </script>
 </body>
 
