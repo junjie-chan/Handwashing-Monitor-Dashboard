@@ -358,7 +358,13 @@ generate_trolley_records(records_count);
 function generate_records_in_random_time() {
   const random_interval = parseInt(generate_random_number(1, 1, 3)) * 1000;
   setTimeout(function () {
-    generate_trolley_records(parseInt(generate_random_number(1, 1, 3)), true);
+    var num_of_record = parseInt(generate_random_number(1, 1, 3));
+    generate_trolley_records(num_of_record, true);
+    // Update general total
+    var label = document.querySelector(
+      "#labels_container .style_box:first-of-type span"
+    );
+    label.textContent = parseInt(label.textContent) + num_of_record;
     generate_records_in_random_time();
   }, random_interval);
 }

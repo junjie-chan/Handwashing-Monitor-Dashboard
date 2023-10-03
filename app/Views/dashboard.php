@@ -58,7 +58,7 @@
                         <div class="col-md-4 p-4 style_box">
                             <div class="box">
                                 <p class="titles">General Total Today</p>
-                                <p>350 times</p>
+                                <p><span>350</span> times</p>
                             </div>
                         </div>
 
