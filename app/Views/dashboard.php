@@ -110,6 +110,10 @@
         var padding_top = parseFloat(style.getPropertyValue('padding-top'));
         var padding_bottom = parseFloat(style.getPropertyValue('padding-bottom'));
         document.querySelector('#table_body').style.height = String(height - padding_top - padding_bottom) + 'px';
+        // Set table width
+        var styleElement = document.createElement('style');
+        styleElement.textContent = 'table { width: 95% !important; }';
+        document.head.appendChild(styleElement);
     </script>
 </body>
 
