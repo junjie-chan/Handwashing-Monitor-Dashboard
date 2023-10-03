@@ -4,7 +4,7 @@ form {
 }
 
 form input[type="password"] {
-    text-align: center;
+    /* text-align: center; */
     font-family: inherit;
     width: 100%;
     outline: none;
@@ -40,7 +40,7 @@ form .form-field {
     -webkit-box-align: center;
     -ms-flex-align: center;
     align-items: center;
-    margin-bottom: 1rem;
+    /* margin-bottom: 1rem; */
     position: relative;
 }
 
@@ -49,9 +49,9 @@ form .btn {
     border: none;
     cursor: pointer;
     display: inline-block;
-    margin: 5px auto;
+    /* margin: 5px auto; */
     padding: 0.9rem 2.5rem;
-    text-align: center;
+    /* text-align: center; */
     background-color: #066cc5;
     color: #fff;
     border-radius: 15px;
@@ -60,7 +60,7 @@ form .btn {
 }
 
 form h1 {
-    text-align: center;
+    /* text-align: center; */
 }
 
 #container {

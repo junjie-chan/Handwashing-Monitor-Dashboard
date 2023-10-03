@@ -3,101 +3,145 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Performance Summary</title>
-    <link rel="stylesheet" type="text/css" href="<?= base_url('css/common.css') ?>">
-    <link rel="stylesheet" type="text/css" href="<?= base_url('css/dashboard .css') ?>">
+    <title>Realtime Dashboard</title>
+    <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css'>
+    <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Montserrat'>
+    <link rel="stylesheet" href="<?= base_url('css/dashboard.css') ?>">
+    <style>
+        table {
+            width: 95% !important;
+            color: #bfbfbf;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+
+        th {
+            /* For Safari */
+            position: -webkit-sticky;
+            position: sticky;
+            top: 0;
+            padding: 8px 15px;
+        }
+
+        tr:nth-child(even),
+        th {
+            background-color: #383F58;
+        }
+
+        td {
+            padding: 6px;
+            font-size: 0.8rem;
+        }
+
+        #table_body {
+            height: 100%;
+        }
+
+        .scrollbar {
+            background: none;
+            border-radius: 0 !important;
+        }
+
+        #table_container {
+            padding-right: 10px;
+        }
+    </style>
+
 </head>
 
 <body>
-    <h1 style="display: block;">Dashboard of Handwashing Activities</h1>
+    <div id="wrapper">
+        <div class="content-area">
+            <div class="container-fluid">
+                <div class="main">
+                    <div class="row" id="labels_container">
+                        <div class="col-md-4 p-4 style_box">
+                            <div class="box">
+                                <p class="titles">General Total Today</p>
+                                <p><span>350</span> times</p>
+                            </div>
+                        </div>
 
-    <div id="labels_container">
-        <div>
-            <p>Total:</p>
-            <p>869 times</p>
-        </div>
+                        <div class="col-md-4 p-4 style_box">
+                            <div class="box">
+                                <p class="titles">This Trolley Total Today</p>
+                                <p><span>36</span> times</p>
+                            </div>
+                        </div>
 
-        <div>
-            <p>This Month:</p>
-            <p>386 times</p>
-        </div>
+                        <div class="col-md-4 p-4 style_box">
+                            <div class="box">
+                                <p class="titles">Hourly Performance</p>
+                                <p><span>8</span> times / h</p>
+                            </div>
+                        </div>
+                    </div>
 
-        <div>
-            <p>This Week:</p>
-            <p>105 times</p>
-        </div>
+                    <div class="row">
+                        <div class="col-md-4 p-4 style_box">
+                            <div class="box" id="circle_container">
+                                <p class="titles">Comparison with Yesterday</p>
+                                <div id="circle_layer">
+                                    <div id="circleChart"> </div>
+                                </div>
+                            </div>
+                        </div>
 
-        <div>
-            <p>Today:</p>
-            <p>16 times</p>
+                        <div class="col-md-8 p-4 style_box">
+                            <div class="box" id="line_container">
+                                <p class="titles">Real-Time Average Performance</p>
+                                <div id="line_chart"> </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-4 p-4 style_box">
+                            <div class="box" id="table_container">
+                                <p class="titles">Real-Time Records</p>
+                                <div class="scrollbar" id="table_body" style="height: 100%;">
+                                    <table>
+                                        <thead>
+                                            <tr>
+                                                <th>Trolley ID</th>
+                                                <th>Time</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                        </tbody>
+                                    </table>
+                                    <div class="force-overflow"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-8 p-4 style_box">
+                            <div class="box" id="column_container">
+                                <p class="titles">Real-Time Comparison with Top 10 Trolleys</p>
+                                <div id="column_chart"> </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
-    <div id="donuts_container">
-        <div class="donut_container">
-            <canvas id="total"></canvas>
-        </div>
-
-        <div class="donut_container">
-            <canvas id="month"></canvas>
-        </div>
-
-        <div class="donut_container">
-            <canvas id="week"></canvas>
-        </div>
-
-        <div class="donut_container">
-            <canvas id="day"></canvas>
-        </div>
-    </div>
-
-    <div id="percentages">
-        <div>
-            <p>76%</p>
-        </div>
-
-        <div>
-            <p>68%</p>
-        </div>
-
-        <div>
-            <p>93%</p>
-        </div>
-        <div>
-
-            <p>85%</p>
-        </div>
-    </div>
-
-    <div id="lines_container">
-        <div class="line_container">
-            <canvas id="individual_yesterday" style="width:100%;max-width:600px"></canvas>
-        </div>
-
-        <div class="line_container">
-            <canvas id="individual_others" style="width:100%;max-width:600px"></canvas>
-        </div>
-    </div>
-
-
-    <!-- Donut charts adjustment -->
-    <script>
-        var label_element = document.querySelector('#labels_container div:first-of-type')
-        var label_style = window.getComputedStyle(label_element);
-        var label_width = label_style.getPropertyValue("width");
-        var donut_containers = document.querySelectorAll('.donut_container');
-        var canvas = document.querySelectorAll('.donut_container canvas');
-        for (var i = 0; i < donut_containers.length; i++) {
-            donut_containers[i].style.width = label_width;
-            donut_containers[i].style.height = label_width;
-            canvas[i].style.height = label_width;
-            canvas[i].style.width = label_width;
-        }
-    </script>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+    <script src='https://cdn.jsdelivr.net/npm/apexcharts'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js'></script>
     <script src="<?= base_url('javascript/dashboard.js') ?>"></script>
+    <script>
+        document.querySelector('.main').style.height = window.innerWidth * 0.9;
+        // Modify table height
+        var table = document.querySelector("#table_body");
+        var title = document.querySelector("#table_container p");
+        var title_style = window.getComputedStyle(title);
+        var title_h = parseFloat(title_style.getPropertyValue("height"));
+        var title_mb = parseFloat(title_style.getPropertyValue("margin-bottom"));
+        var table_style = window.getComputedStyle(table);
+        var table_h = parseFloat(table_style.getPropertyValue("height"));
+        table.style.height = String(table_h - title_h - title_mb) + "px";
+    </script>
 </body>
 
 </html>
