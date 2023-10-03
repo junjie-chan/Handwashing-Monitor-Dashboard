@@ -325,3 +325,26 @@ window.setInterval(function () {
     getRangeRandom({ min: 10, max: 100 }),
   ]);
 }, 3000);
+
+// Real-Time Data Generation
+function generate_trolley_records(count) {
+  var table = document.querySelector("tbody");
+  for (let i = 0; i < count; i++) {
+    // Create new row
+    var new_row = table.insertRow(table.rows.length);
+    var cell_1 = new_row.insertCell(0);
+    var cell_2 = new_row.insertCell(1);
+    // Make up id
+    cell_1.innerHTML =
+      "TROLLEY-" +
+      parseInt(generate_random_number(1, 1, 100).toString().padStart(2, "0"));
+    // Make up time
+    var now = new Date();
+    var hours = now.getHours().toString().padStart(2, "0");
+    var minutes = now.getMinutes().toString().padStart(2, "0");
+    var seconds = now.getSeconds().toString().padStart(2, "0");
+    cell_2.innerHTML = hours + ":" + minutes + ":" + seconds;
+  }
+}
+// Initially show 20 records
+generate_trolley_records(20);

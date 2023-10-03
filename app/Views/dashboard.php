@@ -95,7 +95,6 @@
                         <div class="col-md-4 p-4 style_box">
                             <div class="box" id="table_container">
                                 <div class="scrollbar" id="table_body">
-                                    <!-- <div id="table_box"> -->
                                     <table>
                                         <thead>
                                             <tr>
@@ -104,33 +103,8 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
-                                                <td>TROLLEY-01</td>
-                                                <td>10:33:23</td>
-                                            </tr>
-                                            <tr>
-                                                <td>TROLLEY-01</td>
-                                                <td>10:33:23</td>
-                                            </tr>
-                                            <tr>
-                                                <td>TROLLEY-01</td>
-                                                <td>10:33:23</td>
-                                            </tr>
-                                            <tr>
-                                                <td>TROLLEY-01</td>
-                                                <td>10:33:23</td>
-                                            </tr>
-                                            <tr>
-                                                <td>TROLLEY-01</td>
-                                                <td>10:33:23</td>
-                                            </tr>
-                                            <tr>
-                                                <td>TROLLEY-01</td>
-                                                <td>10:33:23</td>
-                                            </tr>
                                         </tbody>
                                     </table>
-                                    <!-- </div> -->
                                     <div class="force-overflow"></div>
                                 </div>
                             </div>

@@ -94,9 +94,9 @@ h1, h2, h3, h4, h5, h6, strong {
   /* border-radius: 0 !important; */
 }
 
-.force-overflow {
+/* .force-overflow {
   min-height: 450px;
-}
+} */
 
 
 .scrollbar::-webkit-scrollbar-track {
