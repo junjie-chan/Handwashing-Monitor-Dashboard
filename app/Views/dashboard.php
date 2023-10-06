@@ -6,7 +6,10 @@
     <title>Realtime Dashboard</title>
     <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css'>
     <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Montserrat'>
+    <!-- Local Settings -->
     <link rel="stylesheet" href="<?= base_url('css/dashboard.css') ?>">
+    <!-- Remote Settings -->
+    <!-- <link rel="stylesheet" href="<?= base_url('public/css/dashboard.css') ?>"> -->
     <style>
         table {
             width: 95% !important;
@@ -66,7 +69,7 @@
             <div class="container-fluid">
                 <div class="main">
                     <div class="row" id="dashboard_title">
-                        <h3>Performance Dashboard</h3>
+                        <h3>Dashboard of Handwashing Activities</h3>
                     </div>
 
                     <div class="row" id="labels_container">
@@ -144,7 +147,10 @@
 
     <script src='https://cdn.jsdelivr.net/npm/apexcharts'></script>
     <script src='https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js'></script>
+    <!-- Local Settings -->
     <script src="<?= base_url('javascript/dashboard.js') ?>"></script>
+    <!-- Remote Settings -->
+    <!-- <script src="<?= base_url('public/javascript/dashboard.js') ?>"></script> -->
     <script>
         document.querySelector('.main').style.height = window.innerWidth * 0.9;
         // Modify table height

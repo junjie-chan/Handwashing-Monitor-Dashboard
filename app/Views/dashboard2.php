@@ -5,8 +5,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Performance Summary</title>
+    <!-- Local Settings -->
     <link rel="stylesheet" type="text/css" href="<?= base_url('css/common.css') ?>">
     <link rel="stylesheet" type="text/css" href="<?= base_url('css/dashboard2.css') ?>">
+    <!-- Remote Settings -->
+    <!-- <link rel="stylesheet" type="text/css" href="<?= base_url('public/css/common.css') ?>">
+    <link rel="stylesheet" type="text/css" href="<?= base_url('public/css/dashboard2.css') ?>"> -->
 </head>
 
 <body>
@@ -97,7 +101,10 @@
     </script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+    <!-- Local Settings -->
     <script src="<?= base_url('javascript/dashboard2.js') ?>"></script>
+    <!-- Remote Settings -->
+    <!-- <script src="<?= base_url('public/javascript/dashboard2.js') ?>"></script> -->
 </body>
 
 </html>
