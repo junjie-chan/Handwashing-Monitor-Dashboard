@@ -59,10 +59,16 @@ form .btn {
     font-size: 17px;
 }
 
+#form_box {
+    width: 100%;
+    height: 100%;
+}
+
 form h1 {
     text-align: center;
 }
 
+/* Container Box Styling */
 #container {
     position: absolute;
     left: 50%;
@@ -100,6 +106,8 @@ form h1 {
     animation: move3 6s linear infinite;
     filter: blur(1px);
 }
+
+/* Water Drop Animation */
 @keyframes move {
     75% {
         border-radius: 42% 58% 41% 59% / 57% 51% 49% 43%;
@@ -112,6 +120,8 @@ form h1 {
 
     }
 }
+
+/* Mini Bubble 1 Animation */
 @keyframes move2 {
     50% {
         left: 70px;
@@ -126,6 +136,8 @@ form h1 {
         top: 130px;
     }
 }
+
+/* Mini Bubble 2 Animation */
 @keyframes move3 {
     50% {
         left: 120px;
@@ -139,9 +151,4 @@ form h1 {
         left: 110px;
         top: 100px;
     }
-}
-
-#form_box {
-    width: 100%;
-    height: 100%;
 }

@@ -2,8 +2,15 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>G'Day</title>
+
+  <!-- Local Settings -->
   <link rel="stylesheet" type="text/css" href="<?= base_url('css/common.css') ?>">
   <link rel="stylesheet" type="text/css" href="<?= base_url('css/login .css') ?>">
+  <!-- Remote Settings -->
+  <!-- <link rel="stylesheet" type="text/css" href="<?= base_url('public/css/common.css') ?>">
+  <link rel="stylesheet" type="text/css" href="<?= base_url('public/css/login .css') ?>"> -->
+
+  <!-- Extra Styling for the Error Box -->
   <style>
     #error_box {
       width: 80%;
@@ -26,10 +33,13 @@
 
 <body style="background-color: #7fbed7;">
   <div id="container">
+
+    <!-- Error Box -->
     <div id="error_box">
       <p><?php echo $error; ?></p>
     </div>
 
+    <!-- Form Box -->
     <div id="form_box">
       <?php echo form_open(base_url('check')); ?>
       <h1>Access Code</h1>
@@ -41,7 +51,6 @@
         <button class="btn" type="submit" id="btn">Login</button>
       </div>
       <?php echo form_close(); ?>
-
     </div>
   </div>
 
