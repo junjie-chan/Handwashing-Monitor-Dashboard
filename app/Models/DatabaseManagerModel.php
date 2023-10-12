@@ -144,20 +144,39 @@ class DatabaseManagerModel extends Model
     public function get_label_base_data($trolley_id = 'TROLLEY-06')
     {
         date_default_timezone_set('Australia/Brisbane');
-        $now = new DateTime();
-        $starting_time = new DateTime('09:00:00');
-        $ending_time = new DateTime('17:00:00');
-        $date = $now->format('Y-m-d');
+        $date = (new DateTime())->format('Y-m-d');
         $db = self::connect_database();
 
         $today_total = $db->table('records')
             ->where('date', $date)
             ->countAllResults();
-        $trolley_today = $db->table('records')
-            ->where('date', $date)
+        $trolley_today = $this->calculate_trolley_today($trolley_id);
+
+        return [
+            'today_total' => $today_total,
+            'trolley_today' => $trolley_today,
+            'hourly_rate' => $this->calculate_hourly_rate($trolley_today, $trolley_id)
+        ];
+    }
+
+    public function calculate_trolley_today($trolley_id = 'TROLLEY-06')
+    {
+        $db = self::connect_database();
+        return $db->table('records')
+            ->where('date', (new DateTime())->format('Y-m-d'))
             ->where('device_id', $trolley_id)
             ->countAllResults();
+    }
 
+    public function calculate_hourly_rate($trolley_today = null, $trolley_id = 'TROLLEY-06')
+    {
+        if (is_null($trolley_today)) {
+            $trolley_today = $this->calculate_trolley_today($trolley_id);
+        }
+
+        $now = new DateTime();
+        $starting_time = new DateTime('09:00:00');
+        $ending_time = new DateTime('17:00:00');
         if ($now < $starting_time) {
             $hourly_rate = 0;
         } else {
@@ -169,10 +188,6 @@ class DatabaseManagerModel extends Model
             }
         }
 
-        return [
-            'today_total' => $today_total,
-            'trolley_today' => $trolley_today,
-            'hourly_rate' => number_format($hourly_rate, 2, '.', '')
-        ];
+        return number_format($hourly_rate, 2, '.', '');
     }
 }

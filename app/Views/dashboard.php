@@ -171,7 +171,7 @@
     <script src='https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js'></script>
 
     <!-- Local Settings -->
-    <script src="<?= base_url('javascript/dashboard.js') ?>"></script>
+    <script src="<?= base_url('javascript/dashboard_test.js') ?>"></script>
     <!-- Remote Settings -->
     <!-- <script src="<?= base_url('public/javascript/dashboard.js') ?>"></script> -->
 
@@ -189,7 +189,61 @@
         table.style.height = String(table_h - title_h - title_mb) + "px";
     </script>
 
+    <script>
+        // Create an event
+        let source = new EventSource('<?= base_url('updates/stream') ?>');
+        // When receive data from the server
+        source.onmessage = function(event) {
+            // Parse Data
+            let data = JSON.parse(event.data);
+            // Stop the event when receive a 'close' message
+            if (data.text === 'close') {
+                source.close();
+            } else {
+                // Update label: today total
+                if (data.add_today_total) {
+                    // console.log('original: ' + parseInt(today_total.textContent) + 'to add: ' + data.add_today_total);
+                    var today_total = document.querySelector('#labels_container .style_box:first-of-type span');
+                    today_total.innerText = parseInt(today_total.textContent) + data.add_today_total;
+                }
 
+                // Update label: trolley today
+                if (data.add_trolley_today) {
+                    var trolley_today = document.querySelector('#labels_container .style_box:nth-of-type(2) span');
+                    trolley_today.innerText = parseInt(trolley_today.textContent) + data.add_trolley_today;
+                }
+
+                // Update label: hourly rate
+                if (data.hourly_rate) {
+                    var hourly_rate = document.querySelector('#labels_container .style_box:last-of-type span');
+                    hourly_rate.innerText = data.hourly_rate;
+                }
+
+                // Update Table
+                var records = Object.values(JSON.parse(data.new_records));
+                if (records.length) {
+                    var time = data.time;
+                    for (var i = 0; i < records.length; i++) {
+                        // Add Rows
+                        var table = document.querySelector("tbody");
+                        var new_row = table.insertRow(0);
+                        new_row.insertCell(0).innerText = records[i];
+                        new_row.insertCell(1).innerText = time;
+                        // Remove Rows
+                        var rows = table.getElementsByTagName("tr");
+                        table.removeChild(rows[19]);
+                    }
+                    // var hourly_rate = document.querySelector('#labels_container .style_box:last-of-type span');
+                    // hourly_rate.innerText = data.hourly_rate;
+                }
+
+
+                // Update content
+                // document.getElementById('sse-data').innerText = data.text;
+            }
+
+        };
+    </script>
 </body>
 
 </html>
