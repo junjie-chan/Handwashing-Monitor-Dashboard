@@ -241,6 +241,15 @@
                         data.single_comparison,
                         data.general_comparison,
                     ]);
+
+                    // Update Column Chart
+                    column_chart.updateSeries([{
+                            data: data.top10_single,
+                        },
+                        {
+                            data: data.top10_general,
+                        },
+                    ]);
                 }
 
                 // Update Table

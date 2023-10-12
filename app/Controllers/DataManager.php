@@ -75,7 +75,7 @@ class DataManager extends BaseController
 
         // Real-time data generation & database update & web pages update
         $current_time = 0;
-        while ($current_time < 8) {
+        while ($current_time < 30) {
             // Generate the new record that matches the current time
             $trolleys = array_filter($status, function ($tuple) use ($current_time) {
                 return $tuple[4] === $current_time && $tuple[1] > 0;
@@ -110,12 +110,32 @@ class DataManager extends BaseController
                 }
             }
 
+            // Compute data for charts
             $hourly_rate = $model->calculate_hourly_rate();
             $yesterday_hourly_rate = $model->calculate_hourly_rate(today: false);
             $general_hourly_rate = $model->calculate_hourly_rate('all');
             $general_yesterday_hourly_rate = $model->calculate_hourly_rate('all', false);
             $single_comparison = number_format($hourly_rate / $yesterday_hourly_rate * 100, 2, '.', '');
             $general_comparison = number_format($general_hourly_rate / $general_yesterday_hourly_rate * 100, 2, '.', '');
+
+            // Computer two arrays for column chart update
+            $all_trolley_ids = array_map(
+                function ($trolley_num) {
+                    return 'TROLLEY-' . sprintf('%02d', $trolley_num);
+                },
+                range(1, 12)
+            );
+            $all_hourly_rates = array_map(
+                function ($id) use ($model) {
+                    return $model->calculate_hourly_rate($id);
+                },
+                $all_trolley_ids
+            );
+            arsort($all_hourly_rates);
+            $top10_general = array_slice($all_hourly_rates, 0, 10);
+            array_splice($top10_general, 5, 0, 0);
+            $top10_single = array_fill(0, 10, 0);
+            array_splice($top10_single, 5, 0, $hourly_rate);
 
             echo 'data: ' . json_encode([
                 // Update Labels
@@ -129,7 +149,10 @@ class DataManager extends BaseController
                 'general_hourly_rate' => $general_hourly_rate,
                 // Update Donut Chart
                 'single_comparison' => $single_comparison,
-                'general_comparison' => $general_comparison
+                'general_comparison' => $general_comparison,
+                // Update Column Chart
+                'top10_general' => $top10_general,
+                'top10_single' => $top10_single
             ]) . "\n\n";
 
             ob_flush();
