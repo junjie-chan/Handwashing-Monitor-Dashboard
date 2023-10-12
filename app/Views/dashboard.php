@@ -235,6 +235,12 @@
                             ],
                         },
                     ]);
+
+                    // Update Circle Chart
+                    circle_chart.updateSeries([
+                        data.single_comparison,
+                        data.general_comparison,
+                    ]);
                 }
 
                 // Update Table

@@ -110,16 +110,26 @@ class DataManager extends BaseController
                 }
             }
 
+            $hourly_rate = $model->calculate_hourly_rate();
+            $yesterday_hourly_rate = $model->calculate_hourly_rate(today: false);
+            $general_hourly_rate = $model->calculate_hourly_rate('all');
+            $general_yesterday_hourly_rate = $model->calculate_hourly_rate('all', false);
+            $single_comparison = number_format($hourly_rate / $yesterday_hourly_rate * 100, 2, '.', '');
+            $general_comparison = number_format($general_hourly_rate / $general_yesterday_hourly_rate * 100, 2, '.', '');
+
             echo 'data: ' . json_encode([
                 // Update Labels
                 'add_today_total' => count($trolleys),
                 'add_trolley_today' => $add_trolley_today,
-                'hourly_rate' => $model->calculate_hourly_rate(),
+                'hourly_rate' => $hourly_rate,
                 // Update Table
                 'new_records' => json_encode($trolley_ids),
                 'time' => $time_str,
                 // Update Line Chart
-                'general_hourly_rate' => $model->calculate_hourly_rate(null, 'all')
+                'general_hourly_rate' => $general_hourly_rate,
+                // Update Donut Chart
+                'single_comparison' => $single_comparison,
+                'general_comparison' => $general_comparison
             ]) . "\n\n";
 
             ob_flush();
