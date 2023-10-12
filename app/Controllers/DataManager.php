@@ -117,12 +117,14 @@ class DataManager extends BaseController
                 'hourly_rate' => $model->calculate_hourly_rate(),
                 // Update Table
                 'new_records' => json_encode($trolley_ids),
-                'time' => $time_str
+                'time' => $time_str,
+                // Update Line Chart
+                'general_hourly_rate' => $model->calculate_general_hourly_rate()
             ]) . "\n\n";
 
             ob_flush();
             flush();
-            sleep(1);
+            sleep(2);
             $current_time += 1;
         }
 

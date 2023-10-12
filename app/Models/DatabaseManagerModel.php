@@ -196,4 +196,33 @@ class DatabaseManagerModel extends Model
 
         return number_format($hourly_rate, 2, '.', '');
     }
+
+    public function calculate_general_hourly_rate($date = null)
+    {
+        date_default_timezone_set('Australia/Brisbane');
+        if (is_null($date)) {
+            $date = (new DateTime())->format('Y-m-d');
+        }
+
+        $db = self::connect_database();
+        $today_total = $db->table('records')
+            ->where('date', $date)
+            ->countAllResults();
+
+        $now = new DateTime();
+        $starting_time = new DateTime('09:00:00');
+        $ending_time = new DateTime('17:00:00');
+        if ($now < $starting_time) {
+            $hourly_rate = 0;
+        } else {
+            if ($now >= $ending_time) {
+                $hourly_rate = $today_total / 8;
+            } else {
+                $diff = $now->diff($starting_time);
+                $hourly_rate = $today_total / ((($diff->h) * 3600 + ($diff->i) * 60 + ($diff->s)) / 60 / 60);
+            }
+        }
+
+        return number_format($hourly_rate / 12, 2, '.', '');
+    }
 }

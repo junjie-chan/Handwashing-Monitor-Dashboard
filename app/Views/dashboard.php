@@ -209,14 +209,32 @@
 
                 // Update label: trolley today
                 if (data.add_trolley_today) {
-                    var trolley_today = document.querySelector('#labels_container .style_box:nth-of-type(2) span');
-                    trolley_today.innerText = parseInt(trolley_today.textContent) + data.add_trolley_today;
+                    var trolley_today_label = document.querySelector('#labels_container .style_box:nth-of-type(2) span');
+                    trolley_today_label.innerText = parseInt(trolley_today_label.textContent) + data.add_trolley_today;
                 }
 
-                // Update label: hourly rate
                 if (data.hourly_rate) {
-                    var hourly_rate = document.querySelector('#labels_container .style_box:last-of-type span');
-                    hourly_rate.innerText = data.hourly_rate;
+                    var hourly_rate = data.hourly_rate;
+                    // Update label: hourly rate
+                    var hourly_rate_label = document.querySelector('#labels_container .style_box:last-of-type span');
+                    hourly_rate_label.innerText = hourly_rate;
+
+                    // Update Line Chart
+                    line_chart.updateSeries([{
+                            // Update this trolley hourly rate
+                            data: [
+                                ...line_chart.w.config.series[0].data,
+                                [line_chart.w.globals.maxX + 300000, hourly_rate],
+                            ],
+                        },
+                        {
+                            // Update general hourly rate of all trolleys
+                            data: [
+                                ...line_chart.w.config.series[1].data,
+                                [line_chart.w.globals.maxX + 300000, data.general_hourly_rate],
+                            ],
+                        },
+                    ]);
                 }
 
                 // Update Table
@@ -234,6 +252,8 @@
                         table.removeChild(rows[19]);
                     }
                 }
+
+
 
 
                 // Update content
