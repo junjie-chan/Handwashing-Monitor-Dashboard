@@ -65,6 +65,7 @@ class DatabaseManagerModel extends Model
         return self::seconds_to_interval($seconds);
     }
 
+    // Base Data Generation
     public static function generate_hourly_data($device_id, $date, $starting_time, int $hourly_freq)
     {
         $current_time = clone $starting_time;
@@ -90,7 +91,7 @@ class DatabaseManagerModel extends Model
         }
     }
 
-    // generate n-month data from yesterday (inclusive), for example, if n=2 and today is 10-13, then the starting day is 08-01
+    // Generate n-month data from yesterday (inclusive), for example, if n=2 and today is 10-13, then the starting day is 08-01
     public static function generate_n_month_data_from_now($device_id, $n, $freq_level)
     {
         date_default_timezone_set('Australia/Brisbane');
@@ -135,12 +136,43 @@ class DatabaseManagerModel extends Model
             // Randomly select one frequency level for one trolley
             $freq_levels = [[5, 15], [16, 30], [31, 45]];
             $freq_level = $freq_levels[array_rand($freq_levels)];
-            self::generate_n_month_data_from_now('TROLLEY-' . (string) $i + 1, $n_month, $freq_level);
+            self::generate_n_month_data_from_now('TROLLEY-' . sprintf('%02d', $i + 1), $n_month, $freq_level);
         }
     }
 
-    public function test()
+    // Data Retrieval
+    public function get_label_base_data($trolley_id = 'TROLLEY-06')
     {
-        self::generate_base_data(1);
+        date_default_timezone_set('Australia/Brisbane');
+        $now = new DateTime();
+        $starting_time = new DateTime('09:00:00');
+        $ending_time = new DateTime('17:00:00');
+        $date = $now->format('Y-m-d');
+        $db = self::connect_database();
+
+        $today_total = $db->table('records')
+            ->where('date', $date)
+            ->countAllResults();
+        $trolley_today = $db->table('records')
+            ->where('date', $date)
+            ->where('device_id', $trolley_id)
+            ->countAllResults();
+
+        if ($now < $starting_time) {
+            $hourly_rate = 0;
+        } else {
+            if ($now > $ending_time) {
+                $hourly_rate = ($trolley_today / 8);
+            } else {
+                $diff = $now->diff($starting_time);
+                $hourly_rate = $trolley_today / ((($diff->h) * 3600 + ($diff->i) * 60 + ($diff->s)) / 60 / 60);
+            }
+        }
+
+        return [
+            'today_total' => $today_total,
+            'trolley_today' => $trolley_today,
+            'hourly_rate' => number_format($hourly_rate, 2, '.', '')
+        ];
     }
 }

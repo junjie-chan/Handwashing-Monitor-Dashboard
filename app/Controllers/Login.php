@@ -50,7 +50,7 @@ class Login extends BaseController
                 'expiry' => $expiry
             );
             setcookie('hospital', json_encode($data), $expiry, '/');
-            return view('dashboard');
+            return redirect()->to(base_url('dashboard'));
         } else {
             return view('login', ['error' => 'The access code was incorrect!', 'display' => 'block']);
         }

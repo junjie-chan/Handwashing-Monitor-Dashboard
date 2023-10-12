@@ -74,6 +74,7 @@
         <div class="content-area">
             <div class="container-fluid">
                 <div class="main">
+                    <div id="sse-data"></div>
 
                     <!-- Title -->
                     <div class="row" id="dashboard_title">
@@ -87,7 +88,7 @@
                         <div class="col-md-4 p-4 style_box">
                             <div class="box">
                                 <p class="titles">General Total Today</p>
-                                <p><span>350</span> times</p>
+                                <p><span><?php echo $today_total ?></span> times</p>
                             </div>
                         </div>
 
@@ -95,7 +96,7 @@
                         <div class="col-md-4 p-4 style_box">
                             <div class="box">
                                 <p class="titles">This Trolley Total Today</p>
-                                <p><span>36</span> times</p>
+                                <p><span><?php echo $trolley_today ?></span> times</p>
                             </div>
                         </div>
 
@@ -103,7 +104,7 @@
                         <div class="col-md-4 p-4 style_box">
                             <div class="box">
                                 <p class="titles">Hourly Performance</p>
-                                <p><span>8</span> times / h</p>
+                                <p><span><?php echo $hourly_rate ?></span> times / h</p>
                             </div>
                         </div>
                     </div>
@@ -187,6 +188,8 @@
         var table_h = parseFloat(table_style.getPropertyValue("height"));
         table.style.height = String(table_h - title_h - title_mb) + "px";
     </script>
+
+
 </body>
 
 </html>

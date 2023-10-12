@@ -8,7 +8,8 @@ class Dashboard extends BaseController
     {
         $cookie = json_decode(get_cookie('hospital'));
         if ($cookie and $cookie->expiry > time()) {
-            return view('dashboard');
+            $model = Model('DatabaseManagerModel');
+            return view('dashboard', $model->get_label_base_data());
         } else {
             return view('login', ['error' => '', 'display' => 'none']);
         }

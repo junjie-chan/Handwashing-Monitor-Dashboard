@@ -17,4 +17,4 @@ $routes->get('/dashboard2', 'Dashboard2::index');
 $routes->get('/dashboard', 'Dashboard::index');
 
 $routes->get('/updates', 'DataManager::index');
-// $routes->get('/updates/stream', 'DataManager::stream');
+$routes->get('/updates/stream', 'DataManager::stream');
