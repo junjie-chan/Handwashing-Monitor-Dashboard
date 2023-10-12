@@ -173,41 +173,21 @@ class DatabaseManagerModel extends Model
             ->countAllResults();
     }
 
-    public function calculate_hourly_rate($trolley_today = null, $trolley_id = 'TROLLEY-06')
+    public function calculate_hourly_rate($today_total = null, $trolley_id = 'TROLLEY-06')
     {
         date_default_timezone_set('Australia/Brisbane');
-        if (is_null($trolley_today)) {
-            $trolley_today = $this->calculate_trolley_today(null, $trolley_id);
+        if (is_null($today_total)) {
+            $today_total = $this->calculate_trolley_today(null, $trolley_id);
         }
 
-        $now = new DateTime();
-        $starting_time = new DateTime('09:00:00');
-        $ending_time = new DateTime('17:00:00');
-        if ($now < $starting_time) {
-            $hourly_rate = 0;
-        } else {
-            if ($now >= $ending_time) {
-                $hourly_rate = $trolley_today / 8;
-            } else {
-                $diff = $now->diff($starting_time);
-                $hourly_rate = $trolley_today / ((($diff->h) * 3600 + ($diff->i) * 60 + ($diff->s)) / 60 / 60);
-            }
-        }
-
-        return number_format($hourly_rate, 2, '.', '');
-    }
-
-    public function calculate_general_hourly_rate($date = null)
-    {
-        date_default_timezone_set('Australia/Brisbane');
-        if (is_null($date)) {
+        if ($trolley_id == 'all') {
+            date_default_timezone_set('Australia/Brisbane');
             $date = (new DateTime())->format('Y-m-d');
+            $db = self::connect_database();
+            $today_total = $db->table('records')
+                ->where('date', $date)
+                ->countAllResults();
         }
-
-        $db = self::connect_database();
-        $today_total = $db->table('records')
-            ->where('date', $date)
-            ->countAllResults();
 
         $now = new DateTime();
         $starting_time = new DateTime('09:00:00');
@@ -222,7 +202,10 @@ class DatabaseManagerModel extends Model
                 $hourly_rate = $today_total / ((($diff->h) * 3600 + ($diff->i) * 60 + ($diff->s)) / 60 / 60);
             }
         }
+        if ($trolley_id == 'all') {
+            $hourly_rate /= 12;
+        }
 
-        return number_format($hourly_rate / 12, 2, '.', '');
+        return number_format($hourly_rate, 2, '.', '');
     }
 }
