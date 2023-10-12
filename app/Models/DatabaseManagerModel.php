@@ -144,13 +144,17 @@ class DatabaseManagerModel extends Model
     public function get_label_base_data($trolley_id = 'TROLLEY-06')
     {
         date_default_timezone_set('Australia/Brisbane');
-        $date = (new DateTime())->format('Y-m-d');
+        $now = new DateTime();
+        $date = $now->format('Y-m-d');
+        // For quick simulation and view the changes, shrink 90% of the waiting time
+        // $start_time = $second_now->modify('-1 hour')->format('H:i:s');
+        $start_time = $now->modify('-6 minutes')->format('H:i:s');
         $db = self::connect_database();
 
         $today_total = $db->table('records')
             ->where('date', $date)
             ->countAllResults();
-        $trolley_today = $this->calculate_total($date, (new DateTime())->format('H:i:s'), $trolley_id);
+        $trolley_today = $this->calculate_total($date, (new DateTime())->format('H:i:s'), $trolley_id, true, $start_time);
 
         return [
             'today_total' => $today_total,
@@ -159,20 +163,44 @@ class DatabaseManagerModel extends Model
         ];
     }
 
-    public function calculate_total($date, $time, $trolley_id = 'TROLLEY-06')
-    {
+    // continuous: if true, get the number of handwashing activities an hour from now. Otherwise,
+    // get the number of handwashing activities from 9:00:00 to now.
+    public function calculate_total(
+        $date,
+        $time,
+        $trolley_id = 'TROLLEY-06',
+        $continuous = true,
+        $starting_time = null
+    ) {
         $db = self::connect_database();
-        if ($trolley_id != 'all') {
-            return $db->table('records')
-                ->where('date', $date)
-                ->where('time <', $time)
-                ->where('device_id', $trolley_id)
-                ->countAllResults();
+        if ($continuous) {
+            if ($trolley_id != 'all') {
+                return $db->table('records')
+                    ->where('date', $date)
+                    ->where('time <=', $time)
+                    ->where('time >=', $starting_time)
+                    ->where('device_id', $trolley_id)
+                    ->countAllResults();
+            } else {
+                return $db->table('records')
+                    ->where('date', $date)
+                    ->where('time <=', $time)
+                    ->where('time >=', $starting_time)
+                    ->countAllResults();
+            }
         } else {
-            return $db->table('records')
-                ->where('date', $date)
-                ->where('time <', $time)
-                ->countAllResults();
+            if ($trolley_id != 'all') {
+                return $db->table('records')
+                    ->where('date', $date)
+                    ->where('time <=', $time)
+                    ->where('device_id', $trolley_id)
+                    ->countAllResults();
+            } else {
+                return $db->table('records')
+                    ->where('date', $date)
+                    ->where('time <=', $time)
+                    ->countAllResults();
+            }
         }
     }
 
@@ -180,10 +208,12 @@ class DatabaseManagerModel extends Model
     // $today: if false, means yesterday, otherwise, means today.
     public function calculate_hourly_rate(
         $trolley_id = 'TROLLEY-06',
-        $today = true
+        $today = true,
+        $continuous = true
     ) {
         date_default_timezone_set('Australia/Brisbane');
         $now = new DateTime();
+        $second_now = new DateTime();
         $starting_time = new DateTime('09:00:00');
         $ending_time = new DateTime('17:00:00');
         if (!$today) {
@@ -195,16 +225,25 @@ class DatabaseManagerModel extends Model
         $time = $now->format('H:i:s');
 
         // Calculate total handwashing activities during the day
-        $total = $this->calculate_total($date, $time, $trolley_id);
-
-        if ($now < $starting_time) {
-            $hourly_rate = 0;
+        if ($continuous) {
+            // For quick simulation and view the changes, shrink 90% of the waiting time
+            // $start_time = $second_now->modify('-1 hour')->format('H:i:s');
+            $start_time = $second_now->modify('-6 minutes')->format('H:i:s');
+            $hourly_rate = $this->calculate_total($date, $time, $trolley_id, true, $start_time);
         } else {
-            if ($now >= $ending_time) {
-                $hourly_rate = $total / 8;
+            $total = $this->calculate_total($date, $time, $trolley_id, false);
+        }
+
+        if (!$continuous) {
+            if ($now < $starting_time) {
+                $hourly_rate = 0;
             } else {
-                $diff = $now->diff($starting_time);
-                $hourly_rate = $total / ((($diff->h) * 3600 + ($diff->i) * 60 + ($diff->s)) / 60 / 60);
+                if ($now >= $ending_time) {
+                    $hourly_rate = $total / 8;
+                } else {
+                    $diff = $now->diff($starting_time);
+                    $hourly_rate = $total / ((($diff->h) * 3600 + ($diff->i) * 60 + ($diff->s)) / 60 / 60);
+                }
             }
         }
 

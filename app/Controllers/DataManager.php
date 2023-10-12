@@ -13,16 +13,9 @@ class DataManager extends BaseController
         // $model->save_record('TROLLEY-46', '2023-10-02', '22:00:35');
         // $model->test();
 
-
-
-
-
-
         // foreach ($status as $s) {
         //     echo 'id: ' . $s[0] . ', freq level: ' . $s[1] . ', time left: ' . $s[2] . ', next freq: ' . $s[3] . '<br>';
         // }
-
-
 
         // return view('updates');
     }
@@ -37,29 +30,22 @@ class DataManager extends BaseController
         }
         return array_values($status);
     }
-    public function stream()
+
+    public function reset_period()
     {
-        $model = Model('DatabaseManagerModel');
-
-        header('Content-Type: text/event-stream');
-        header('Cache-Control: no-cache');
-        header('Connection: keep-alive');
-
-        ob_end_clean();  // Close output cache
-
         // Initialize trolley status
         $freq_levels = [[5, 15], [16, 30], [31, 45]];
         // [[trolley_id, freq_left, freq_length, time_left, next_freq],...]
         // To disable the quick simulation mode, uncomment the original calculations
-        $status = array_map(function ($trolley_num) use ($freq_levels) {
+        return array_map(function ($trolley_num) use ($freq_levels) {
             // Randomly pick one frequency level and generate a frequency
             // For quick simulation and view the changes, shrink 90% of the waiting time
-            // $freq_level = rand(...$freq_levels[array_rand($freq_levels)]);
-            $freq_level = (int)(rand(...$freq_levels[array_rand($freq_levels)]) * 0.1) - 1;
+            $freq_level = rand(...$freq_levels[array_rand($freq_levels)]);
+            // $freq_level = (int)(rand(...$freq_levels[array_rand($freq_levels)]) * 0.1) - 1;
             // Handle 0 for quick simulation
-            if ($freq_level <= 0) {
-                $freq_level = 1;
-            }
+            // if ($freq_level <= 0) {
+            //     $freq_level = 1;
+            // }
             // 1 hour time interval
             // For quick simulation and view the changes, shrink 90% of the waiting time
             // $time_left = 60 * 60;
@@ -72,10 +58,25 @@ class DataManager extends BaseController
             $next_freq = $freq_length;
             return ['TROLLEY-' . sprintf('%02d', $trolley_num), $freq_level, $freq_length, $time_left, $next_freq];
         }, range(1, 12));
+    }
+    public function stream()
+    {
+        $model = Model('DatabaseManagerModel');
+
+        header('Content-Type: text/event-stream');
+        header('Cache-Control: no-cache');
+        header('Connection: keep-alive');
+
+        ob_end_clean();  // Close output cache
 
         // Real-time data generation & database update & web pages update
         $current_time = 0;
-        while ($current_time < 30) {
+        // The comment is for testing
+        // while ($current_time < 30) {
+        while (true) {
+            if ($current_time % 360 == 0) {
+                $status = $this->reset_period();
+            }
             // Generate the new record that matches the current time
             $trolleys = array_filter($status, function ($tuple) use ($current_time) {
                 return $tuple[4] === $current_time && $tuple[1] > 0;
@@ -99,6 +100,7 @@ class DataManager extends BaseController
 
                 // Update current trolley status and add to the status list
                 $trolley[1] -= 1;
+                // For quick simulation and view the changes, shrink 90% of the waiting time
                 $trolley[2] = (int)(rand(30, $trolley[3] / 4) * 0.1);
                 $trolley[3] -= $trolley[2];
                 $trolley[4] += $trolley[2];
@@ -110,13 +112,20 @@ class DataManager extends BaseController
                 }
             }
 
+            echo var_dump($status);
+
             // Compute data for charts
             $hourly_rate = $model->calculate_hourly_rate();
             $yesterday_hourly_rate = $model->calculate_hourly_rate(today: false);
             $general_hourly_rate = $model->calculate_hourly_rate('all');
             $general_yesterday_hourly_rate = $model->calculate_hourly_rate('all', false);
-            $single_comparison = number_format($hourly_rate / $yesterday_hourly_rate * 100, 2, '.', '');
-            $general_comparison = number_format($general_hourly_rate / $general_yesterday_hourly_rate * 100, 2, '.', '');
+            if ($yesterday_hourly_rate == 0 || $general_yesterday_hourly_rate == 0) {
+                $single_comparison = $hourly_rate * 100;
+                $general_comparison = $general_hourly_rate * 100;
+            } else {
+                $single_comparison = number_format($hourly_rate / $yesterday_hourly_rate * 100, 2, '.', '');
+                $general_comparison = number_format($general_hourly_rate / $general_yesterday_hourly_rate * 100, 2, '.', '');
+            }
 
             // Computer two arrays for column chart update
             $all_trolley_ids = array_map(

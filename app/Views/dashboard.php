@@ -264,7 +264,7 @@
                         new_row.insertCell(1).innerText = time;
                         // Remove Rows
                         var rows = table.getElementsByTagName("tr");
-                        table.removeChild(rows[19]);
+                        table.removeChild(rows[20]);
                     }
                 }
 
