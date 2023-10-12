@@ -150,7 +150,7 @@ class DatabaseManagerModel extends Model
         $today_total = $db->table('records')
             ->where('date', $date)
             ->countAllResults();
-        $trolley_today = $this->calculate_trolley_today($trolley_id);
+        $trolley_today = $this->calculate_trolley_today($date, $trolley_id);
 
         return [
             'today_total' => $today_total,
@@ -159,19 +159,25 @@ class DatabaseManagerModel extends Model
         ];
     }
 
-    public function calculate_trolley_today($trolley_id = 'TROLLEY-06')
+    public function calculate_trolley_today($date = null, $trolley_id = 'TROLLEY-06')
     {
+        date_default_timezone_set('Australia/Brisbane');
+        if (is_null($date)) {
+            $date = (new DateTime())->format('Y-m-d');
+        }
+
         $db = self::connect_database();
         return $db->table('records')
-            ->where('date', (new DateTime())->format('Y-m-d'))
+            ->where('date', $date)
             ->where('device_id', $trolley_id)
             ->countAllResults();
     }
 
     public function calculate_hourly_rate($trolley_today = null, $trolley_id = 'TROLLEY-06')
     {
+        date_default_timezone_set('Australia/Brisbane');
         if (is_null($trolley_today)) {
-            $trolley_today = $this->calculate_trolley_today($trolley_id);
+            $trolley_today = $this->calculate_trolley_today(null, $trolley_id);
         }
 
         $now = new DateTime();
@@ -180,8 +186,8 @@ class DatabaseManagerModel extends Model
         if ($now < $starting_time) {
             $hourly_rate = 0;
         } else {
-            if ($now > $ending_time) {
-                $hourly_rate = ($trolley_today / 8);
+            if ($now >= $ending_time) {
+                $hourly_rate = $trolley_today / 8;
             } else {
                 $diff = $now->diff($starting_time);
                 $hourly_rate = $trolley_today / ((($diff->h) * 3600 + ($diff->i) * 60 + ($diff->s)) / 60 / 60);

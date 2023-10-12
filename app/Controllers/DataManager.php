@@ -115,6 +115,7 @@ class DataManager extends BaseController
                 'add_today_total' => count($trolleys),
                 'add_trolley_today' => $add_trolley_today,
                 'hourly_rate' => $model->calculate_hourly_rate(),
+                // Update Table
                 'new_records' => json_encode($trolley_ids),
                 'time' => $time_str
             ]) . "\n\n";
@@ -124,8 +125,6 @@ class DataManager extends BaseController
             sleep(1);
             $current_time += 1;
         }
-
-        echo var_dump($model->get_label_base_data());
 
         echo "data: " . json_encode(['text' => 'close']) . "\n\n";
     }

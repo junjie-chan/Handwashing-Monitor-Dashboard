@@ -115,7 +115,7 @@
                         <!-- Donut Chart -->
                         <div class="col-md-4 p-4 style_box">
                             <div class="box" id="circle_container">
-                                <p class="titles">Comparison with Yesterday</p>
+                                <p class="titles">Hourly Rate Compared to Yesterday</p>
                                 <div id="circle_layer">
                                     <div id="circleChart"> </div>
                                 </div>
@@ -233,8 +233,6 @@
                         var rows = table.getElementsByTagName("tr");
                         table.removeChild(rows[19]);
                     }
-                    // var hourly_rate = document.querySelector('#labels_container .style_box:last-of-type span');
-                    // hourly_rate.innerText = data.hourly_rate;
                 }
 
 
