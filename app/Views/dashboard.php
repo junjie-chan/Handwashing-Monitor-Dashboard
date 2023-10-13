@@ -115,7 +115,7 @@
                         <!-- Donut Chart -->
                         <div class="col-md-4 p-4 style_box">
                             <div class="box" id="circle_container">
-                                <p class="titles">Comparison with Yesterday</p>
+                                <p class="titles">Hourly Rate Compared to Yesterday</p>
                                 <div id="circle_layer">
                                     <div id="circleChart"> </div>
                                 </div>
@@ -171,7 +171,7 @@
     <script src='https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js'></script>
 
     <!-- Local Settings -->
-    <script src="<?= base_url('javascript/dashboard.js') ?>"></script>
+    <script src="<?= base_url('javascript/dashboard_test.js') ?>"></script>
     <!-- Remote Settings -->
     <!-- <script src="<?= base_url('public/javascript/dashboard.js') ?>"></script> -->
 
@@ -189,7 +189,94 @@
         table.style.height = String(table_h - title_h - title_mb) + "px";
     </script>
 
+    <script>
+        // Create an event
+        let source = new EventSource('<?= base_url('updates/stream') ?>');
+        // When receive data from the server
+        source.onmessage = function(event) {
+            // Parse Data
+            let data = JSON.parse(event.data);
+            // Stop the event when receive a 'close' message
+            if (data.text === 'close') {
+                source.close();
+            } else {
+                // Update label: today total
+                if (data.add_today_total) {
+                    // console.log('original: ' + parseInt(today_total.textContent) + 'to add: ' + data.add_today_total);
+                    var today_total = document.querySelector('#labels_container .style_box:first-of-type span');
+                    today_total.innerText = parseInt(today_total.textContent) + data.add_today_total;
+                }
 
+                // Update label: trolley today
+                if (data.add_trolley_today) {
+                    var trolley_today_label = document.querySelector('#labels_container .style_box:nth-of-type(2) span');
+                    trolley_today_label.innerText = parseInt(trolley_today_label.textContent) + data.add_trolley_today;
+                }
+
+                if (data.hourly_rate) {
+                    var hourly_rate = data.hourly_rate;
+                    // Update label: hourly rate
+                    var hourly_rate_label = document.querySelector('#labels_container .style_box:last-of-type span');
+                    hourly_rate_label.innerText = hourly_rate;
+
+                    // Update Line Chart
+                    line_chart.updateSeries([{
+                            // Update this trolley hourly rate
+                            data: [
+                                ...line_chart.w.config.series[0].data,
+                                [line_chart.w.globals.maxX + 300000, hourly_rate],
+                            ],
+                        },
+                        {
+                            // Update general hourly rate of all trolleys
+                            data: [
+                                ...line_chart.w.config.series[1].data,
+                                [line_chart.w.globals.maxX + 300000, data.general_hourly_rate],
+                            ],
+                        },
+                    ]);
+
+                    // Update Circle Chart
+                    circle_chart.updateSeries([
+                        data.single_comparison,
+                        data.general_comparison,
+                    ]);
+
+                    // Update Column Chart
+                    column_chart.updateSeries([{
+                            data: data.top10_single,
+                        },
+                        {
+                            data: data.top10_general,
+                        },
+                    ]);
+                }
+
+                // Update Table
+                var records = Object.values(JSON.parse(data.new_records));
+                if (records.length) {
+                    var time = data.time;
+                    for (var i = 0; i < records.length; i++) {
+                        // Add Rows
+                        var table = document.querySelector("tbody");
+                        var new_row = table.insertRow(0);
+                        new_row.insertCell(0).innerText = records[i];
+                        new_row.insertCell(1).innerText = time;
+                        // Remove Rows
+                        var rows = table.getElementsByTagName("tr");
+                        table.removeChild(rows[20]);
+                    }
+                }
+
+
+
+
+                // Update content
+                // document.getElementById('sse-data').innerText = data.text;
+            }
+
+        };
+    </script>
 </body>
 
 </html>
