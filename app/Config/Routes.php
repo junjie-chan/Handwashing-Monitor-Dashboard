@@ -14,7 +14,7 @@ $routes->post('/check', 'Login::check');
 $routes->get('/logout', 'Login::logout');
 $routes->get('/summary', 'Summary::index');
 $routes->get('/dashboard2', 'Dashboard2::index');
-$routes->get('/dashboard', 'Dashboard::index');
+$routes->get('/dashboard_2', 'Dashboard::index');
 
 $routes->get('/updates', 'DataManager::index');
 $routes->get('/updates/stream', 'DataManager::stream');

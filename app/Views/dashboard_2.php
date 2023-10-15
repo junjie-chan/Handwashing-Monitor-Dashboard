@@ -9,9 +9,9 @@
     <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Montserrat'>
 
     <!-- Local Settings -->
-    <link rel="stylesheet" href="<?= base_url('css/dashboard.css') ?>">
+    <link rel="stylesheet" href="<?= base_url('css/dashboard_2.css') ?>">
     <!-- Remote Settings -->
-    <!-- <link rel="stylesheet" href="<?= base_url('public/css/dashboard.css') ?>"> -->
+    <!-- <link rel="stylesheet" href="<?= base_url('public/css/dashboard_2.css') ?>"> -->
 
     <style>
         /* Table Styling */
@@ -171,7 +171,7 @@
     <script src='https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.2/moment.min.js'></script>
 
     <!-- Local Settings -->
-    <script src="<?= base_url('javascript/dashboard_test.js') ?>"></script>
+    <script src="<?= base_url('javascript/dashboard_2.js') ?>"></script>
     <!-- Remote Settings -->
     <!-- <script src="<?= base_url('public/javascript/dashboard.js') ?>"></script> -->
 
