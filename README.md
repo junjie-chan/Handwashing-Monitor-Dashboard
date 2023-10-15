@@ -1,6 +1,6 @@
 <!-- Logo -->
 <div style="text-align:center">
-<img src="logo.png" alt="Logo" width="400" height="325.64">
+<img src="public/images/logo.png" alt="Logo" width="400" height="325.64">
 </div>
 
 <!-- TABLE OF CONTENTS -->
@@ -64,7 +64,7 @@ The CodeIgniter 4 framework with Model-View-Controller (MVC) architecture is app
 </p>
 
 <p align="center">
-<img src="communication_structure.png" alt="Image Description">
+<img src="public/images/communication_structure.png" alt="Image Description">
 </p>
 
 # 4.0 Installation (Windows)
@@ -103,7 +103,7 @@ The CodeIgniter 4 framework with Model-View-Controller (MVC) architecture is app
 ## 5.1. Navigation Flow
 
 <p align="center">
-<img src="navigation_structure.png" alt="Image Description">
+<img src="public/images/navigation_structure.png" alt="Image Description">
 </p>
 
 ## 5.2. Navigation Steps
