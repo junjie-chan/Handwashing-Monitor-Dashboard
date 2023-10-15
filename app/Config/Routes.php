@@ -18,4 +18,4 @@ $routes->get('/updates/stream', 'DataManager::stream');
 
 // Version 1
 $routes->get('/summary', 'Summary::index');
-$routes->get('/dashboard2', 'Dashboard2::index');
+$routes->get('/dashboard_v1', 'Dashboard_V1::index');
