@@ -1,102 +1,245 @@
-# CodeIgniter 4 Development
+<!-- Logo -->
+<div style="text-align:center">
+<img src="logo.png" alt="Logo" width="400" height="325.64">
+</div>
 
-[![PHPUnit](https://github.com/codeigniter4/CodeIgniter4/workflows/PHPUnit/badge.svg)](https://github.com/codeigniter4/CodeIgniter4/actions/workflows/test-phpunit.yml)
-[![PHPStan](https://github.com/codeigniter4/CodeIgniter4/actions/workflows/test-phpstan.yml/badge.svg)](https://github.com/codeigniter4/CodeIgniter4/actions/workflows/test-phpstan.yml)
-[![Psalm](https://github.com/codeigniter4/CodeIgniter4/actions/workflows/test-psalm.yml/badge.svg)](https://github.com/codeigniter4/CodeIgniter4/actions/workflows/test-psalm.yml)
-[![Coverage Status](https://coveralls.io/repos/github/codeigniter4/CodeIgniter4/badge.svg?branch=develop)](https://coveralls.io/github/codeigniter4/CodeIgniter4?branch=develop)
-[![Downloads](https://poser.pugx.org/codeigniter4/framework/downloads)](https://packagist.org/packages/codeigniter4/framework)
-[![GitHub release (latest by date)](https://img.shields.io/github/v/release/codeigniter4/CodeIgniter4)](https://packagist.org/packages/codeigniter4/framework)
-[![GitHub stars](https://img.shields.io/github/stars/codeigniter4/CodeIgniter4)](https://packagist.org/packages/codeigniter4/framework)
-[![GitHub license](https://img.shields.io/github/license/codeigniter4/CodeIgniter4)](https://github.com/codeigniter4/CodeIgniter4/blob/develop/LICENSE)
-[![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/codeigniter4/CodeIgniter4/pulls)
-<br>
+<!-- TABLE OF CONTENTS -->
+<details>
+   <summary style="font-size: 2rem">Table of Contents</summary>
+   <ol style="font-size: 1.4rem">
+      <a href="#10-about-the-project">1.0 About The Project</a></br>
+      <a href="#20-built-with">2.0 Built With</a></br>
+      <a href="#30-how-it-works">3.0 How It Works</a></br>
+      <a href="#40-installation-windows">4.0 Installation (Windows)</a>
+      <ol>
+         <a href="#41-install--setup-xampp">4.1. Install & Setup XAMPP</a></br>
+         <a href="#42-modify-configurations">4.2. Modify Configurations</a></br>
+      </ol>
+      <a href="#50-usage">5.0. Usage</a>
+      <ol>
+         <a href="#51-navigation-flow">5.1. Navigation Flow</a></br>
+         <a href="#52-navigation-steps">5.2. Navigation Steps</a></br>
+      </ol>
+      <a href="#60-roadmap">6.0. Roadmap</a>
+      <ol>
+         <a href="#version-40-current-multiple-dashboard-modes">6.1. Version 4.0 (Current) Multiple Dashboard Modes</a></br>
+         <a href="#version-383-fully-functioning-full-stack-prototype">6.2. Version 3.8.3 Fully Functioning Full-Stack Prototype</a></br>
+         <a href="#version-21317-ui-design-data-generation-and-real-life-simulation-at-front-end">6.3. Version 2.13.17 UI Design, Data Generation, and Real Life Simulation at Front End</a></br>
+         <a href="#version-134-fundamental-structure">6.4. Version 1.3.4 Fundamental Structure</a></br>
+      </ol>
+      <a href="#70-code-references">7.0. Code References</a></br>
+      <ol>
+         <a href="#version-134">Version 1.3.4</a></br>
+         <a href="#version-21317">Version 2.13.17</a></br>
+         <a href="#version-4">Version 4</a></br>
+      </ol>
+      <a href="#80-contact-information">8.0. Contact Information</a></br>
+   </ol>
+</details>
 
-## What is CodeIgniter?
+# 1.0 About The Project
 
-CodeIgniter is a PHP full-stack web framework that is light, fast, flexible and secure.
-More information can be found at the [official site](https://codeigniter.com).
+<p style="text-align: justify;">
+  In real life, a large number of nurses do not wash their hands sufficiently even if they know the importance and necessity of handwashing for their duties. This project is to provide a real-time web-based data visualization of nurses' performance in handwashing during their day shifts, with the application of nudging techniques and Human-Computer Interaction (HCI). This project aims to gently guide and influence nurses' behaviors and encourage higher handwashing frequency.
+</p>
 
-This repository holds the source code for CodeIgniter 4 only.
-Version 4 is a complete rewrite to bring the quality and the code into a more modern version,
-while still keeping as many of the things intact that has made people love the framework over the years.
+# 2.0 Built With
 
-More information about the plans for version 4 can be found in [CodeIgniter 4](https://forum.codeigniter.com/forumdisplay.php?fid=28) on the forums.
+[![HTML][HTML.com]][HTML-url]
+[![CSS][CSS.com]][CSS-url]
+[![JavaScript][Javascript.com]][Javascript-url]
+[![JQuery][JQuery.com]][JQuery-url]
+[![PHP][PHP.com]][PHP-url]
+[![CodeIgniter][Codeigniter.com]][Codeigniter-url]
+[![Bootstrap][Bootstrap.com]][Bootstrap-url]
+[![Mysql][Mysql.com]][Mysql-url]
+[![Mariadb][Mariadb.com]][Mariadb-url]
+[![Python][Python.com]][Python-url]
+[![Linux][Linux.com]][Linux-url]
 
-### Documentation
+# 3.0 How It Works
 
-The [User Guide](https://codeigniter4.github.io/userguide/) is the primary documentation for CodeIgniter 4.
+<p style="text-align: justify;">
+The CodeIgniter 4 framework with Model-View-Controller (MVC) architecture is applied for project implementation. The following graph shows the basic structure of communication between components.
+</p>
 
-The current **in-progress** User Guide can be found [here](https://codeigniter4.github.io/CodeIgniter4/).
-As with the rest of the framework, it is a work in progress, and will see changes over time to structure, explanations, etc.
+<p align="center">
+<img src="communication_structure.png" alt="Image Description">
+</p>
 
-You might also be interested in the [API documentation](https://codeigniter4.github.io/api/) for the framework components.
+# 4.0 Installation (Windows)
 
-## Important Change with index.php
+## 4.1. Install & Setup XAMPP
 
-index.php is no longer in the root of the project! It has been moved inside the *public* folder,
-for better security and separation of components.
+1. Download and install [XAMPP][XAMPP]
 
-This means that you should configure your web server to "point" to your project's *public* folder, and
-not to the project root. A better practice would be to configure a virtual host to point there. A poor practice would be to point your web server to the project root and expect to enter *public/...*, as the rest of your logic and the
-framework are exposed.
+2. Open XAMPP
 
-**Please** read the user guide for a better explanation of how CI4 works!
+3. Change Port:
 
-## Repository Management
+   1. Config → Apache (httpd.conf)
+   2. Change "Listen 80" to "Listen 8080"
 
-CodeIgniter is developed completely on a volunteer basis. As such, please give up to 7 days
-for your issues to be reviewed. If you haven't heard from one of the team in that time period,
-feel free to leave a comment on the issue so that it gets brought back to our attention.
+4. Install "Apache" and "MySQL" services
 
-We use GitHub issues to track **BUGS** and to track approved **DEVELOPMENT** work packages.
-We use our [forum](http://forum.codeigniter.com) to provide SUPPORT and to discuss
-FEATURE REQUESTS.
+5. Move the project folder to `/xampp_installation_path/htdocs/`
 
-If you raise an issue here that pertains to support or a feature request, it will
-be closed! If you are not sure if you have found a bug, raise a thread on the forum first -
-someone else may have encountered the same thing.
+6. Start "Apache" and "MySQL" services
 
-Before raising a new GitHub issue, please check that your bug hasn't already
-been reported or fixed.
+7. Go to the browser and view http://localhost:8080/lazycc/public
 
-We use pull requests (PRs) for CONTRIBUTIONS to the repository.
-We are looking for contributions that address one of the reported bugs or
-approved work packages.
+## 4.2. Modify Configurations
 
-Do not use a PR as a form of feature request.
-Unsolicited contributions will only be considered if they fit nicely
-into the framework roadmap.
-Remember that some components that were part of CodeIgniter 3 are being moved
-to optional packages, with their own repository.
+1. Uncomment local settings at `/lazycc/app/Config/App.php`
 
-## Contributing
+2. Uncomment local settings at `/lazycc/app/Views/login.php`
 
-We **are** accepting contributions from the community! It doesn't matter whether you can code, write documentation, or help find bugs,
-all contributions are welcome.
+3. Uncomment local settings at `/lazycc/app/Views/dashboard_1.php`
 
-Please read the [*Contributing to CodeIgniter*](https://github.com/codeigniter4/CodeIgniter4/blob/develop/contributing/README.md).
+4. Uncomment local settings at `/lazycc/app/Views/dashboard_2.php`
 
-CodeIgniter has had thousands on contributions from people since its creation. This project would not be what it is without them.
+# 5.0. Usage
 
-<a href="https://github.com/codeigniter4/CodeIgniter4/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=codeigniter4/CodeIgniter4" />
-</a>
+## 5.1. Navigation Flow
 
-Made with [contrib.rocks](https://contrib.rocks).
+<p align="center">
+<img src="navigation_structure.png" alt="Image Description">
+</p>
 
-## Server Requirements
+## 5.2. Navigation Steps
 
-PHP version 7.4 or higher is required, with the following extensions installed:
+1. Open browser and type in the URL
 
-- [intl](http://php.net/manual/en/intl.requirements.php)
-- [mbstring](http://php.net/manual/en/mbstring.installation.php)
+   - Local URL: http://localhost:8080/lazycc/public
+   - Remote URL: https://deco3801-lazycc.uqcloud.net/lazycc/
 
-Additionally, make sure that the following extensions are enabled in your PHP:
+2. Enter access codes to view 2 different dashboards
+   - Nurses Dashboard: _**nurses**_
+   - Higher-ups Dashboard: _**higherups**_
 
-- json (enabled by default - don't turn it off)
-- [mysqlnd](http://php.net/manual/en/mysqlnd.install.php) if you plan to use MySQL
-- [libcurl](http://php.net/manual/en/curl.requirements.php) if you plan to use the HTTP\CURLRequest library
+# 6.0. Roadmap
 
-## Running CodeIgniter Tests
+## Version 4.0 (Current) Multiple Dashboard Modes
 
-Information on running the CodeIgniter test suite can be found in the [README.md](tests/README.md) file in the tests directory.
+<input type="checkbox" checked> Feature 1: Design two modes of dashboards for different users (nurses & higher-ups)
+
+<input type="checkbox" checked> Feature 2: Add bubble animation to login page
+
+## Version 3.8.3 Fully Functioning Full-Stack Prototype
+
+<input type="checkbox" checked> Feature 1: Establish database
+
+<input type="checkbox" checked> Feature 2: Dashboard real-time update
+
+&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" checked> Labels computation and update
+
+&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" checked> Line chart computation and update
+
+&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" checked> Donut chart computation and update
+
+&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" checked> Stacked column chart computation and update
+
+&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" checked> Add quick simulation mode
+
+## Version 2.13.17 UI Design, Data Generation, and Real Life Simulation at Front End
+
+<input type="checkbox" checked> Feature 1: Add water drop animation on login page
+
+<input type="checkbox" checked> Feature 2: Add static labels, charts (line, donut, stacked column), titles, and tables with styling to the dashboard
+
+&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" checked> Add customized scrollbar
+
+<input type="checkbox" checked> Feature 3: Data generation for simulation at front-end
+
+<input type="checkbox" checked> Feature 4: Simulation of real-time update (update labels, charts movements, add table rows)
+
+<input type="checkbox" checked> Feature 5: User Authentication
+
+&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" checked> Add error box for wrong access code
+
+&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" checked> Set cookies
+
+&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" checked> Add logout function using animated button
+
+<input type="checkbox" checked> Feature 5: Configurations for different environments (local vs remote)
+
+## Version 1.3.4 Fundamental Structure
+
+<input type="checkbox" checked> Feature 1: Basic login view without authentication check
+
+<input type="checkbox" checked> Feature 2: Charts and texts for fundamental dashboard structure with minimum styling
+
+# 7.0. Code References
+
+## Version 1.3.4
+
+- [Donut Charts][donut-charts]
+
+- [Line Charts][line-charts]
+
+## Version 2.13.17
+
+- [Charts (Line, Donut, Stacked Column)][charts]
+
+- [Log Out Button][dashboard]
+
+- [Dashboard]()
+
+- [Table Scroll Bar][table-scroll-bar-url]
+
+## Version 4
+
+- [Bubbles Animation][bubbles-animation-url]
+
+# 8.0. Contact Information
+
+<div align="center">
+
+|     Name      |         Email          |
+| :-----------: | :--------------------: |
+| Andreas Wiora |   a.wiora@uq.net.au    |
+|  Junjie Chen  | junjie.chen1@uq.net.au |
+|  LungYu Lin   |  lungyu.lin@uq.net.au  |
+| SiewHui Chun  | siewhui.chun@uq.net.au |
+|   YuHan Hua   |  yuhan.hua@uq.net.au   |
+|  Zixuan Cao   |  zixuan.cao@uq.net.au  |
+
+</div>
+
+<!-- Code References -->
+
+[donut-charts]: https://www.w3schools.com/js/tryit.asp?filename=trychartjs_doughnut
+[line-charts]: https://www.w3schools.com/js/tryit.asp?filename=tryai_chartjs_lines
+[charts]: https://apexcharts.com/javascript-chart-demos/
+[dashboard]: https://codepen.io/apexcharts/pen/pxZKqL
+[bubbles-animation-url]: https://codepen.io/Mark_Bowley/pen/PozwyP
+[table-scroll-bar-url]: https://codepen.io/devstreak/pen/dMYgeO
+
+<!-- Other Links -->
+
+[XAMPP]: https://www.apachefriends.org/download.html
+
+<!-- Programming Languages -->
+
+[PHP.com]: https://img.shields.io/badge/PHP-777BB4?style=for-the-badge&logo=php&logoColor=white
+[PHP-url]: https://www.php.net/
+[HTML.com]: https://img.shields.io/badge/HTML-239120?style=for-the-badge&logo=html5&logoColor=white
+[HTML-url]: https://html.spec.whatwg.org/multipage/
+[CSS.com]: https://img.shields.io/badge/CSS-239120?&style=for-the-badge&logo=css3&logoColor=white
+[CSS-url]: https://www.w3.org/Style/CSS/
+[Javascript.com]: https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black
+[Javascript-url]: https://developer.mozilla.org/en-US/docs/Web/JavaScript
+[Bootstrap.com]: https://img.shields.io/badge/Bootstrap-563D7C?style=for-the-badge&logo=bootstrap&logoColor=white
+[Bootstrap-url]: https://getbootstrap.com
+[JQuery.com]: https://img.shields.io/badge/jQuery-0769AD?style=for-the-badge&logo=jquery&logoColor=white
+[JQuery-url]: https://jquery.com
+[Python.com]: https://img.shields.io/badge/Python-14354C?style=for-the-badge&logo=python&logoColor=white
+[Python-url]: https://www.python.org/
+[Mysql.com]: https://img.shields.io/badge/MySQL-00000F?style=for-the-badge&logo=mysql&logoColor=white
+[Mysql-url]: https://www.mysql.com/
+[Mariadb.com]: https://img.shields.io/badge/MariaDB-003545?style=for-the-badge&logo=mariadb&logoColor=white
+[Mariadb-url]: https://mariadb.com/
+[Linux.com]: https://img.shields.io/badge/Linux-FCC624?style=for-the-badge&logo=linux&logoColor=black
+[Linux-url]: https://www.kernel.org/
+[Codeigniter.com]: https://img.shields.io/badge/CodeIgniter-%23EF4223.svg?style=for-the-badge&logo=codeIgniter&logoColor=white
+[Codeigniter-url]: https://codeigniter.com/
