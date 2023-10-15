@@ -7,19 +7,6 @@ use DateTime;
 
 class DataManager extends BaseController
 {
-    public function index()
-    {
-        // $model = model('DatabaseManagerModel');
-        // $model->save_record('TROLLEY-46', '2023-10-02', '22:00:35');
-        // $model->test();
-
-        // foreach ($status as $s) {
-        //     echo 'id: ' . $s[0] . ', freq level: ' . $s[1] . ', time left: ' . $s[2] . ', next freq: ' . $s[3] . '<br>';
-        // }
-
-        // return view('updates');
-    }
-
     // Inputs: array, array
     public function remove_status_by_trolley_id($status, $trolley_id)
     {

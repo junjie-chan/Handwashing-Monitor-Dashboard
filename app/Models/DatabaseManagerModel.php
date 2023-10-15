@@ -12,7 +12,7 @@ class DatabaseManagerModel extends Model
     public static function connect_database($db_name = 'handwashing_activities')
     {
         $db = \Config\Database::connect();
-        $db->query("CREATE DATABASE IF NOT EXISTS {$db_name}");
+        $db->query("CREATE DATABASE IF NOT EXISTS {$db_name};");
         $params = [
             'DSN'      => '',
             'hostname' => 'localhost',
