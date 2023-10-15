@@ -12,6 +12,15 @@
 
   <!-- Extra Styling for the Error Box -->
   <style>
+    body {
+      background-color: #151b33;
+      color: #bfbfbf;
+    }
+
+    form .btn {
+      background-color: #b3b3b3;
+    }
+
     #error_box {
       width: 80%;
       color: #9c0006;
@@ -31,7 +40,7 @@
   </style>
 </head>
 
-<body style="background-color: #7fbed7;">
+<body>
   <div id="container">
 
     <!-- Error Box -->
