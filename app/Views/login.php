@@ -19,6 +19,13 @@
 
     form .btn {
       background-color: #b3b3b3;
+      color: #5a5a5a;
+      font-weight: 800;
+    }
+
+    form .btn:hover {
+      background-color: #5a5a5a;
+      color: #b3b3b3;
     }
 
     #error_box {
