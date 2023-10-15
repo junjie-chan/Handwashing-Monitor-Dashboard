@@ -12,9 +12,10 @@ $routes->get('/load_data', 'Login::load_data');
 $routes->get('/user_login', 'Login::login');
 $routes->post('/check', 'Login::check');
 $routes->get('/logout', 'Login::logout');
+$routes->get('/dashboard_1', 'Dashboard::index');
+$routes->get('/dashboard_2', 'Dashboard::index');
+$routes->get('/updates/stream', 'DataManager::stream');
+
+// Version 1
 $routes->get('/summary', 'Summary::index');
 $routes->get('/dashboard2', 'Dashboard2::index');
-$routes->get('/dashboard_2', 'Dashboard::index');
-
-$routes->get('/updates', 'DataManager::index');
-$routes->get('/updates/stream', 'DataManager::stream');
