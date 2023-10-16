@@ -25,11 +25,9 @@ ID to a remote server.
 ## Installation
 
 1. Clone this repository:
-```bash
 git clone git@bitbucket.org:junjie-chan/lazycc.git
 
 ## Usage
-```bash
 python3 run.py
 
 ## Troubleshooting
