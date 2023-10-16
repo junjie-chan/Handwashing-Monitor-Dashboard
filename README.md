@@ -20,20 +20,27 @@
          <a href="#51-navigation-flow">5.1. Navigation Flow</a></br>
          <a href="#52-navigation-steps">5.2. Navigation Steps</a></br>
       </ol>
-      <a href="#60-roadmap">6.0. Roadmap</a>
+      <a href="#60-installation-hardware">6.0 Installation (Hardware)</a>
       <ol>
-         <a href="#version-40-current-multiple-dashboard-modes">6.1. Version 4.0 (Current) Multiple Dashboard Modes</a></br>
-         <a href="#version-383-fully-functioning-full-stack-prototype">6.2. Version 3.8.3 Fully Functioning Full-Stack Prototype</a></br>
-         <a href="#version-21317-ui-design-data-generation-and-real-life-simulation-at-front-end">6.3. Version 2.13.17 UI Design, Data Generation, and Real Life Simulation at Front End</a></br>
-         <a href="#version-134-fundamental-structure">6.4. Version 1.3.4 Fundamental Structure</a></br>
+         <a href="#61-prerequisites">6.1 Prerequisites</a></br>
+         <a href="#62-prerequisites">6.2 Installation</a></br>
+         <a href="#63-prerequisites">6.3 Usage</a></br>
+         <a href="#64-prerequisites">6.4 Troubleshooting</a></br>
       </ol>
-      <a href="#70-code-references">7.0. Code References</a></br>
+      <a href="#70-roadmap">7.0. Roadmap</a>
+      <ol>
+         <a href="#version-40-current-multiple-dashboard-modes">7.1. Version 4.0 (Current) Multiple Dashboard Modes</a></br>
+         <a href="#version-383-fully-functioning-full-stack-prototype">7.2. Version 3.8.3 Fully Functioning Full-Stack Prototype</a></br>
+         <a href="#version-21317-ui-design-data-generation-and-real-life-simulation-at-front-end">7.3. Version 2.13.17 UI Design, Data Generation, and Real Life Simulation at Front End</a></br>
+         <a href="#version-134-fundamental-structure">7.4. Version 1.3.4 Fundamental Structure</a></br>
+      </ol>
+      <a href="#80-code-references">8.0. Code References</a></br>
       <ol>
          <a href="#version-134">Version 1.3.4</a></br>
          <a href="#version-21317">Version 2.13.17</a></br>
          <a href="#version-4">Version 4</a></br>
       </ol>
-      <a href="#80-contact-information">8.0. Contact Information</a></br>
+      <a href="#90-contact-information">9.0. Contact Information</a></br>
    </ol>
 </details>
 
@@ -117,7 +124,32 @@ The CodeIgniter 4 framework with Model-View-Controller (MVC) architecture is app
    - Nurses Dashboard: _**nurses**_
    - Higher-ups Dashboard: _**higherups**_
 
-# 6.0. Roadmap
+# Installation (Hardware)
+
+## Prerequisites
+
+1. Raspberry Pi 4b with Raspbian OS installed (tested only on Debian based)
+2. Ultrasonic sensor model: A02YYUQ
+3. Internet connection for sending data to the remote server
+4. Python3.12+ and necessary libraries (see Installation section)
+
+## Installation
+
+1. After cloning this repository check /hardware for details
+2. Necessary libraries are included in /hardware
+
+## Usage
+
+python3 run.py
+
+## Troubleshooting
+
+- Ensure the ultrasonic sensor is correctly connected to the Raspberry Pi GPIO pins.
+- Check for any error messages in the console output for hints on the problem.
+- Depending on the installed OS, edit the /dev path in the /hardware/driver_X, the default is /dev/ttyS0
+- Verify the server URL and network connection.
+
+# 7.0. Roadmap
 
 ## Version 4.0 (Current) Multiple Dashboard Modes
 
@@ -169,7 +201,7 @@ The CodeIgniter 4 framework with Model-View-Controller (MVC) architecture is app
 
 <input type="checkbox" checked> Feature 2: Charts and texts for fundamental dashboard structure with minimum styling
 
-# 7.0. Code References
+# 8.0. Code References
 
 ## Version 1.3.4
 
@@ -191,7 +223,7 @@ The CodeIgniter 4 framework with Model-View-Controller (MVC) architecture is app
 
 - [Bubbles Animation][bubbles-animation-url]
 
-# 8.0. Contact Information
+# 9.0. Contact Information
 
 <div align="center">
 
