@@ -57,6 +57,7 @@
 [![Sqlite][Sqlite.com]][Sqlite-url]
 [![Python][Python.com]][Python-url]
 [![Linux][Linux.com]][Linux-url]
+[![MarkDown][Markdown.com]][Markdown-url]
 
 # 3.0 How It Works
 
@@ -246,3 +247,5 @@ The CodeIgniter 4 framework with Model-View-Controller (MVC) architecture is app
 [Codeigniter-url]: https://codeigniter.com/
 [Sqlite.com]: https://img.shields.io/badge/SQLite-07405E?style=for-the-badge&logo=sqlite&logoColor=white
 [Sqlite-url]: https://www.sqlite.org/index.html
+[Markdown.com]: https://img.shields.io/badge/Markdown-000000?style=for-the-badge&logo=markdown&logoColor=white
+[Markdown-url]: https://daringfireball.net/projects/markdown/
