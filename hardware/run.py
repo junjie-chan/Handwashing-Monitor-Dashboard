@@ -1,7 +1,7 @@
 '''
 
 
- Copyright (c) 2023 Jolly & Andreas <s4723782@student.uq.edu.au>
+ Copyright (c) 2023 Jolly & Andreas <a.wiora@uq.net.au>
 
  Permission to use, copy, modify, and distribute this software for any
  purpose with or without fee is hereby granted, provided that the above

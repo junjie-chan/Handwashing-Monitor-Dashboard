@@ -39,7 +39,7 @@ pins.
 ## License
 
 
- Copyright (c) 2023 LAZYCC <student.services@uq.edu.au>
+ Copyright (c) 2023 LAZYCC <See project README>
 
  Permission to use, copy, modify, and distribute this software for any
  purpose with or without fee is hereby granted, provided that the above
