@@ -159,4 +159,18 @@ class DataManager extends BaseController
 
         echo "data: " . json_encode(['text' => 'close']) . "\n\n";
     }
+
+    public function process_data()
+    {
+        try {
+            $model = Model('DatabaseManagerModel');
+            $data = $this->request->getPost();
+            if (!empty($data)) {
+                $id = 'TROLLEY-' . sprintf('%02d', $data['device_id']);
+                $model->save_record($id, $data['date'], $data['time']);
+            }
+        } catch (\Exception $e) {
+            echo 'Error: ' . $e->getMessage();
+        }
+    }
 }

@@ -15,6 +15,7 @@ $routes->get('/logout', 'Login::logout');
 $routes->get('/dashboard_1', 'Dashboard::index');
 $routes->get('/dashboard_2', 'Dashboard::index');
 $routes->get('/updates/stream', 'DataManager::stream');
+$routes->post('/upload', 'DataManager::process_data');
 
 // Version 1
 $routes->get('/summary', 'Summary::index');
