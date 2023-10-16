@@ -54,6 +54,7 @@
 [![Bootstrap][Bootstrap.com]][Bootstrap-url]
 [![Mysql][Mysql.com]][Mysql-url]
 [![Mariadb][Mariadb.com]][Mariadb-url]
+[![Sqlite][Sqlite.com]][Sqlite-url]
 [![Python][Python.com]][Python-url]
 [![Linux][Linux.com]][Linux-url]
 
@@ -243,3 +244,5 @@ The CodeIgniter 4 framework with Model-View-Controller (MVC) architecture is app
 [Linux-url]: https://www.kernel.org/
 [Codeigniter.com]: https://img.shields.io/badge/CodeIgniter-%23EF4223.svg?style=for-the-badge&logo=codeIgniter&logoColor=white
 [Codeigniter-url]: https://codeigniter.com/
+[Sqlite.com]: https://img.shields.io/badge/SQLite-07405E?style=for-the-badge&logo=sqlite&logoColor=white
+[Sqlite-url]: https://www.sqlite.org/index.html
