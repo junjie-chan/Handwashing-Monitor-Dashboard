@@ -62,6 +62,7 @@
 [![Mysql][Mysql.com]][Mysql-url]
 [![Mariadb][Mariadb.com]][Mariadb-url]
 [![Sqlite][Sqlite.com]][Sqlite-url]
+[![Phpmyadmin][Phpmyadmin.com]][Phpmyadmin-url]
 [![Python][Python.com]][Python-url]
 [![Linux][Linux.com]][Linux-url]
 [![MarkDown][Markdown.com]][Markdown-url]
@@ -281,3 +282,5 @@ python3 run.py
 [Sqlite-url]: https://www.sqlite.org/index.html
 [Markdown.com]: https://img.shields.io/badge/Markdown-000000?style=for-the-badge&logo=markdown&logoColor=white
 [Markdown-url]: https://daringfireball.net/projects/markdown/
+[Phpmyadmin.com]: https://img.shields.io/badge/phpMyAdmin-6C78AF?logo=phpmyadmin&logoColor=fff&style=for-the-badge
+[Phpmyadmin-url]: https://www.phpmyadmin.net/
