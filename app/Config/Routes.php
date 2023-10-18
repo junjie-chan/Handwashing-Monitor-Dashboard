@@ -15,7 +15,9 @@ $routes->get('/logout', 'Login::logout');
 $routes->get('/dashboard_1', 'Dashboard::index');
 $routes->get('/dashboard_2', 'Dashboard::index');
 $routes->get('/updates/stream', 'DataManager::stream');
+$routes->get('/nurses/stream', 'DataManager::update_nurses_dashboard');
 $routes->post('/upload', 'DataManager::process_data');
+$routes->get('/get_upload', 'DataManager::send_individual_data');
 
 // Version 1
 $routes->get('/summary', 'Summary::index');

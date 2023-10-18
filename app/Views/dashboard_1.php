@@ -66,7 +66,7 @@
         </div>
 
         <!-- Data Visualization -->
-        <div role="progressbar" aria-valuenow="67" aria-valuemin="0" aria-valuemax="100" style="--value: 67"></div>
+        <div role="progressbar" aria-valuenow="34" aria-valuemin="0" aria-valuemax="100" style="--value: 34" id="donut"></div>
       </div>
     </div>
   </section>
@@ -81,4 +81,20 @@
 
   <!-- javascript -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+
+  <script>
+    let source = new EventSource('<?= base_url('nurses/stream') ?>');
+
+    source.onmessage = function(event) {
+      let data = JSON.parse(event.data);
+      // Stop the event when receive a 'close' message
+      if (data.text === 'close') {
+        source.close();
+      } else {
+        var donut = document.querySelector('#donut');
+        donut.style.setProperty('--value', data.percentage);
+        console.log('Data received:', event.data);
+      }
+    };
+  </script>
 </body>

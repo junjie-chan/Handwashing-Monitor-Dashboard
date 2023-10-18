@@ -255,4 +255,32 @@ class DatabaseManagerModel extends Model
 
         return number_format($hourly_rate, 2, '.', '');
     }
+
+    public function get_all_temp()
+    {
+        $db = self::connect_database();
+        self::connect_table($db, 'temp');
+        $results = $db->query("SELECT * from temp;")->getResultArray();
+        // Remove the results from the table
+        if (!empty($results)) {
+            $ids = [];
+            foreach ($results as $item) {
+                $ids[] = $item['record_id'];
+            }
+            $db->query("DELETE FROM temp WHERE record_id IN (" . implode(', ', $ids) . ");");
+        }
+        return $results;
+    }
+
+    // Calculate how much the individual trolley beat the general performance in percentage
+    public function single_vs_general()
+    {
+        $hourly_rate = $this->calculate_hourly_rate();
+        $general_hourly_rate = $this->calculate_hourly_rate('all');
+        if ($general_hourly_rate == 0) {
+            return 100;
+        } else {
+            return (int)(round($hourly_rate / $general_hourly_rate, 2) * 100);
+        }
+    }
 }

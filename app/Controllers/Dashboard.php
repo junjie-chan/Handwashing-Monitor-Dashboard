@@ -4,7 +4,7 @@ namespace App\Controllers;
 
 class Dashboard extends BaseController
 {
-    public function index(): string
+    public function index()
     {
         $cookie = json_decode(get_cookie('hospital'));
         if ($cookie and $cookie->expiry > time()) {
