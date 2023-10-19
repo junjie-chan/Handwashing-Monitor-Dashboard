@@ -26,6 +26,7 @@
 '''
 
 import sys, os, time, datetime
+import socket
 import requests
 import json
 
@@ -33,6 +34,7 @@ import json
 sys.path.append(os.path.dirname(os.path.dirname(os.path.realpath(__file__))))
 from driver_a02yyuw import a02_distance as Board
 
+endpoint = "https://deco3801-lazycc.uqcloud.net/lazycc"
 board = Board()
 lchars = ["-", "\\", "|", "/"]
 # iter through lchars
@@ -72,11 +74,26 @@ def sdistance(d):
 	elif board.last_operate_status == board.STA_ERR_DATA:
 		print("error: no data")
 	else:
+		# something has gone really wrong if we reach here
 		return -1
 
-def send_info(data):
-	url = "https://deco3801-lazycc.uqcloud.net/lazycc"
+def check_connect(url):
+	try:
+		host = socket.gethostbyname(url)
+		s = socket.create_connection((host, 80), 2)
+		s.close()
+		return 1
+	except Exception:
+		pass
+	return 0
 
+def backup(data):
+	with open("backup", 'a') as f:
+		f.write(data + "\n")
+
+	return 0
+
+def send_info(data):
 	# convert to dict
 	data = json.loads(data)
 
@@ -85,12 +102,20 @@ def send_info(data):
 	if err.status_code == 200:
 		print(err.text)
 		return 0
+	# we shouldn't reach here
 	else:
-		return 1
+		return -1
 
-### removed the code for this, it can be added it back later
-def progress_bar():
-    pass
+def retry_send():
+	while not check_connect(endpoint):
+		time.sleep(3)
+
+	with open("backup", 'r') as f:
+		for i in f:
+			send_info(i)
+			time.sleep(1)
+
+	return 0
 
 if __name__ == "__main__":
 	# lower limit set 0mm
@@ -109,14 +134,26 @@ if __name__ == "__main__":
 		n += 1
 
 		err = sdistance(d)
-		if err == -1:
+		if (err == -1):
+			print("fatal error: try rebooting or checking sensor connection")
 			sys.exit()
-		if err <= 100:
-			if (send_info(dtime())):
-				print("error: send failed")
+		# trigger on 100mm
+		if (err <= 100):
+			err = check_connect(endpoint)
+			if not (err):
+				err = send_info(dtime())
+				if (err == -1):
+					print("error: send failed, request rejected")
+			else:
+				backup(dtime())
+				print("trying to resend data")
+				err = retry_send()
+				if not err:
+					print("resend was successful, continuing reading")
 			# sleep before the next reading
-			print("waiting ...")
+			print("sensor offline ... user is washing hands")
 			time.sleep(20)
+			print("sensor is back online ...")
 
 		# set delay time < 0.6s < don't delay for more
 		time.sleep(0.5)
