@@ -70,7 +70,7 @@
 # 3.0 How It Works
 
 <p style="text-align: justify;">
-The CodeIgniter 4 framework with Model-View-Controller (MVC) architecture is applied for project implementation. The following graph shows the basic structure of communication between components.
+The CodeIgniter 4 framework with Model-View-Controller (MVC) architecture is applied for project implementation. The following graph shows the basic structure of communication between components. The controllers conduct data generation for life simulation of general performance. The individual trolley performance can be updated by an HTTP request with relevant data.
 </p>
 
 <p align="center">
@@ -108,7 +108,7 @@ The CodeIgniter 4 framework with Model-View-Controller (MVC) architecture is app
 
 4. Uncomment local settings at `/lazycc/app/Views/dashboard_2.php`
 
-# 5.0. Usage
+# 5.0. Usage & Demo
 
 ## 5.1. Navigation Flow
 
@@ -124,8 +124,37 @@ The CodeIgniter 4 framework with Model-View-Controller (MVC) architecture is app
    - Remote URL: https://deco3801-lazycc.uqcloud.net/lazycc/
 
 2. Enter access codes to view 2 different dashboards
+
    - Nurses Dashboard: _**nurses**_
    - Higher-ups Dashboard: _**higherups**_
+
+3. To simulate the interaction and communication between the sensor and the server, run the following Python code after setting up the local host and opening the nurses page:
+
+   ```Python
+   from requests import post
+   from time import sleep
+   from datetime import datetime
+
+   url = 'http://localhost:8080/lazycc/public/upload'
+   now = datetime.now()
+   data = {
+      "device_id": 6,
+      'date': str(now.date()),
+      'time': now.time().strftime('%H:%M:%S')
+   }
+
+   # Send a request to the server every 10 seconds.
+   # To only send one request, remove the while loop.
+   while True:
+      response = post(url, data=data)
+      print(response.status_code)
+      sleep(10)
+   ```
+
+<p style="color:red;font-weight: bold; font-style: italic;">Notice: as this prototype is used for simulating handwashing activities during nurses' day shifts, if you want to test the interaction by sending HTTP requests, you will need to make the following configuration:</p>
+
+1. Go to `app/Models/DatabaseManagerModel.php` <br>
+2. Modify the time to be later than the current time: `$ending_time = new DateTime('17:00:00');`
 
 # Installation (Hardware)
 
