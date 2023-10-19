@@ -34,7 +34,7 @@ import json
 sys.path.append(os.path.dirname(os.path.dirname(os.path.realpath(__file__))))
 from driver_a02yyuw import a02_distance as Board
 
-endpoint = "https://deco3801-lazycc.uqcloud.net/lazycc"
+endpoint = "https://deco3801-lazycc.uqcloud.net/upload"
 board = Board()
 lchars = ["-", "\\", "|", "/"]
 # iter through lchars
