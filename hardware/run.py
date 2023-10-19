@@ -77,15 +77,12 @@ def sdistance(d):
 		# something has gone really wrong if we reach here
 		return -1
 
-def check_connect(url):
+def check_connect(endpoint):
 	try:
-		host = socket.gethostbyname(url)
-		s = socket.create_connection((host, 80), 2)
-		s.close()
-		return 1
-	except Exception:
-		pass
-	return 0
+		err = requests.get(endpoint, timeout=5)
+		return err.status_code == 200
+	except requests.ConnectionError:
+		return -1
 
 def backup(data):
 	with open("backup", 'a') as f:
@@ -93,12 +90,16 @@ def backup(data):
 
 	return 0
 
+def clear_backup():
+	with open("backup", 'w') as f:
+		pass
+
 def send_info(data):
 	# convert to dict
 	data = json.loads(data)
 
 	# send a post request
-	err = requests.post(url, json=data)
+	err = requests.post(endpoint, json=data)
 	if err.status_code == 200:
 		print(err.text)
 		return 0
@@ -107,7 +108,7 @@ def send_info(data):
 		return -1
 
 def retry_send():
-	while not check_connect(endpoint):
+	while check_connect(endpoint) == -1:
 		time.sleep(3)
 
 	with open("backup", 'r') as f:
@@ -140,20 +141,24 @@ if __name__ == "__main__":
 		# trigger on 100mm
 		if (err <= 100):
 			err = check_connect(endpoint)
-			if not (err):
+			if not (err == -1):
 				err = send_info(dtime())
 				if (err == -1):
 					print("error: send failed, request rejected")
 			else:
+				print("error: no connection to server")
 				backup(dtime())
-				print("trying to resend data")
+				print("... running in backup mode")
 				err = retry_send()
+				print("trying to resend data")
+				time.sleep(0.5)
 				if not err:
 					print("resend was successful, continuing reading")
+					clear_backup()
 			# sleep before the next reading
-			print("sensor offline ... user is washing hands")
+			print("sensor is not reading ... user is washing hands")
 			time.sleep(20)
-			print("sensor is back online ...")
+			print("sensor is reading ...")
 
 		# set delay time < 0.6s < don't delay for more
 		time.sleep(0.5)

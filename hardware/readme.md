@@ -26,6 +26,8 @@ ID to a remote server.
 
 1. Clone this repository:
 git clone git@bitbucket.org:junjie-chan/lazycc.git
+2. Install requirements
+pip3 install requests
 
 ## Usage
 python3 run.py
