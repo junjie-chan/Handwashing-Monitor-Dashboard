@@ -1,13 +1,3 @@
-/* https://dev.to/nehalahmadkhan/how-to-make-footer-stick-to-bottom-of-web-page-3i14 */
-/*
-body{
-    background-color: #c1ece4;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-}
-*/
-
 nav {
 	font-size: 20px;
 	color:aliceblue;
@@ -20,12 +10,9 @@ nav {
 .navbar-brand {
 	color: white !important;
 }
-
-
-
-/* https://codepen.io/Mark_Bowley/pen/PozwyP */
 body {
 	background: #1B213B;
+	font-family: "Sofia", sans-serif;
 	color: #bfbfbf;
 	/*font: 100% Lato, Arial, Sans Serif;*/
 	height: 100vh;
@@ -37,9 +24,10 @@ body {
     flex-direction: column;
 	font-size: 30px;
   	text-shadow: 1px 1px 1px #03e9f4;
+	justify-content: center;
+	align-items: center;
 	
 }
-
 #background-wrap {
     bottom: 0;
 	left: 0;
@@ -49,8 +37,7 @@ body {
 	z-index: -1;
 }
 
-/* KEYFRAMES */
-
+/* Bubbles Styling & Animations*/
 @-webkit-keyframes animateBubble {
     0% {
         margin-top: 1000px;
@@ -104,8 +91,6 @@ body {
         margin-left:50px;
     }
 }
-
-/* ANIMATIONS */
 
 .x1 {
     -webkit-animation: animateBubble 25s linear infinite, sideWays 2s ease-in-out infinite alternate;
@@ -237,8 +222,6 @@ body {
 	transform: scale(0.3);
 }
 
-/* OBJECTS */
-
 .bubble {
     -webkit-border-radius: 50%;
 	-moz-border-radius: 50%;
@@ -277,60 +260,7 @@ body {
 	width: 180px;
 }
 
-/* gauge 
-
-.gauge {
-	width: 100%;
-	max-width: 250px;
-	font-family: "Roboto", sans-serif;
-	font-size: 32px;
-	color: #93939b;
-  }
-  
-  .gauge__body {
-	width: 100%;
-	height: 0;
-	padding-bottom: 50%;
-	background: #93939b;
-	position: relative;
-	border-top-left-radius: 100% 200%;
-	border-top-right-radius: 100% 200%;
-	overflow: hidden;
-  }
-  
-  .gauge__fill {
-	position: absolute;
-	top: 100%;
-	left: 0;
-	width: inherit;
-	height: 100%;
-	background: #93939b;
-	transform-origin: center top;
-	transform: rotate(0.25turn);
-	transition: transform 0.2s ease-out;
-  }
-  
-  .gauge__cover {
-	width: 75%;
-	height: 150%;
-	background: #c1ece4;
-	border-radius: 50%;
-	position: absolute;
-	top: 25%;
-	left: 50%;
-	transform: translateX(-50%);
-  
-	”Text“ 
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	padding-bottom: 25%;
-	box-sizing: border-box;
-  }
-*/
-
-
-/* progress bar*/
+/* Progress Bar */
   @keyframes progress {
 	0% { --percentage: 0; }
 	100% { --percentage: var(--value); }
@@ -378,11 +308,23 @@ body {
 	font-size: calc(var(--size) / 5);
 	color: var(--primary);
   }
-  
 
-
-
+/* Other Styling */
 footer{
     margin-top: auto;
 	font-size: 15px;
+	width: 100%;
+}
+footer div{
+	background-color: #151b33;
+}
+nav{
+	background-color: #151b33;
+	width: 100%;
+}
+#intro{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100%;
 }

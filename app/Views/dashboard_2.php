@@ -267,12 +267,6 @@
                         table.removeChild(rows[20]);
                     }
                 }
-
-
-
-
-                // Update content
-                // document.getElementById('sse-data').innerText = data.text;
             }
 
         };

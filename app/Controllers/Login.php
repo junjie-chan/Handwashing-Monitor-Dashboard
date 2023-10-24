@@ -30,7 +30,11 @@ class Login extends BaseController
         $cookie = json_decode(get_cookie('hospital'));
         // If the cookie is not expired, show dashboard page, else show login page
         if ($cookie and $cookie->expiry > time()) {
-            return redirect()->to(base_url('dashboard_2'));
+            if ($cookie->code == 'higherups') {
+                return redirect()->to(base_url('dashboard_2'));
+            } else if ($cookie->code == 'nurses') {
+                return redirect()->to(base_url('dashboard_1'));
+            }
         } else {
             return redirect()->to(base_url('dashboard_2'))->with('error', '')->with('display', 'none');
         }
@@ -43,14 +47,21 @@ class Login extends BaseController
     public function check()
     {
         $code = $this->request->getPost('code');
-        if ($code == 'deco3801') {
+        if (in_array($code, array('nurses', 'higherups'))) {
             // Set Cookie
             $expiry = time() + 3600 * 8;
             $data = array(
-                'expiry' => $expiry
+                'expiry' => $expiry,
+                'code' => $code
             );
             setcookie('hospital', json_encode($data), $expiry, '/');
-            return redirect()->to(base_url('dashboard_2'));
+
+            // Direct to different version dashboards
+            if ($code == 'nurses') {
+                return redirect()->to(base_url('dashboard_1'));
+            } else if ($code == 'higherups') {
+                return redirect()->to(base_url('dashboard_2'));
+            }
         } else {
             return view('login', ['error' => 'The access code was incorrect!', 'display' => 'block']);
         }

@@ -7,19 +7,6 @@ use DateTime;
 
 class DataManager extends BaseController
 {
-    public function index()
-    {
-        // $model = model('DatabaseManagerModel');
-        // $model->save_record('TROLLEY-46', '2023-10-02', '22:00:35');
-        // $model->test();
-
-        // foreach ($status as $s) {
-        //     echo 'id: ' . $s[0] . ', freq level: ' . $s[1] . ', time left: ' . $s[2] . ', next freq: ' . $s[3] . '<br>';
-        // }
-
-        // return view('updates');
-    }
-
     // Inputs: array, array
     public function remove_status_by_trolley_id($status, $trolley_id)
     {
@@ -50,7 +37,8 @@ class DataManager extends BaseController
             // For quick simulation and view the changes, shrink 90% of the waiting time
             // $time_left = 60 * 60;
             $time_left = 60 * 60 * 0.1;
-            $freq_length = (int)(rand(30, $time_left / 4) * 0.1);
+            // $freq_length = (int)(rand(30, $time_left / 4) * 0.1);
+            $freq_length = rand(1, 3);
             $time_left -= $freq_length;
             // Each hand wash should occur at least 30 seconds after the previous one
             // For quick simulation and view the changes, shrink 90% of the waiting time
@@ -112,8 +100,6 @@ class DataManager extends BaseController
                 }
             }
 
-            echo var_dump($status);
-
             // Compute data for charts
             $hourly_rate = $model->calculate_hourly_rate();
             $yesterday_hourly_rate = $model->calculate_hourly_rate(today: false);
@@ -170,6 +156,109 @@ class DataManager extends BaseController
             $current_time += 1;
         }
 
+        echo "data: " . json_encode(['text' => 'close']) . "\n\n";
+    }
+
+    public function process_data()
+    {
+        // Get data
+        try {
+            $model = Model('DatabaseManagerModel');
+            $data = $this->request->getPost();
+            if (!empty($data)) {
+                $id = 'TROLLEY-' . sprintf('%02d', $data['device_id']);
+                $date = $data['date'];
+                $time = $data['time'];
+                // Insert data to the database
+                $model->save_record($id, $date, $time);
+                $model->save_record($id, $date, $time, 'temp');
+            }
+        } catch (\Exception $e) {
+            echo 'Error: ' . $e->getMessage();
+        }
+    }
+
+    // Send the data received from the sensor to the dashboards. Only for the current trolley.
+    // Not the general.
+    public function send_individual_data()
+    {
+        // Send data to update view
+        header('Content-Type: text/event-stream');
+        header('Cache-Control: no-cache');
+        header('Connection: keep-alive');
+
+        ob_end_clean();
+
+        $model = Model('DatabaseManagerModel');
+        while (true) {
+            // Update current trolley's data
+            $to_upload = $model->get_all_temp();
+            if (!empty($to_upload)) {
+                foreach ($to_upload as $index => $row) {
+                    $row += ['percentage' => $model->single_vs_general()];
+                    echo "data: " . json_encode($row) . "\n\n";
+                    ob_flush();
+                    flush();
+                }
+            }
+            sleep(1);
+        }
+        echo "data: " . json_encode(['text' => 'close']) . "\n\n";
+    }
+
+    public function update_nurses_dashboard()
+    {
+        // Send data to update view
+        header('Content-Type: text/event-stream');
+        header('Cache-Control: no-cache');
+        header('Connection: keep-alive');
+
+        ob_end_clean();
+
+        $model = Model('DatabaseManagerModel');
+        $current_time = 0;
+        while (true) {
+            // Generate data for other trolleys
+            if ($current_time % 360 == 0) {
+                $status = $this->reset_period();
+            }
+            // Generate the new record that matches the current time
+            // Exclude trolley 06 as it's assumed to be the current trolley
+            $trolleys = array_filter($status, function ($tuple) use ($current_time) {
+                return $tuple[0] != 'TROLLEY-06' && $tuple[4] === $current_time && $tuple[1] > 0;
+            });
+
+            // Remove overdue trolley status from the status list
+            $trolley_ids = array_map(function ($tuple) {
+                return $tuple[0];
+            }, $trolleys);
+            if (!empty($trolley_ids)) {
+                $status = $this->remove_status_by_trolley_id($status, $trolley_ids);
+            }
+
+            $now = new DateTime();
+            $time_str = $now->format('H:i:s');
+            foreach ($trolleys as $index => $trolley) {
+                // Update database
+                $model->save_record($trolley[0], $now->format('Y-m-d'), $time_str);
+
+                // Update current trolley status and add to the status list
+                $trolley[1] -= 1;
+                // For quick simulation and view the changes, shrink 90% of the waiting time
+                $trolley[2] = (int)(rand(30, $trolley[3] / 4) * 0.1);
+                $trolley[3] -= $trolley[2];
+                $trolley[4] += $trolley[2];
+                $status[] = $trolley;
+            }
+            $hourly_rate = $model->calculate_hourly_rate();
+            $general_hourly_rate = $model->calculate_hourly_rate('all');
+            echo "data: " . json_encode(['percentage' => $model->single_vs_general(), 'hourly' => $hourly_rate, 'general' => $general_hourly_rate]) . "\n\n";
+
+            ob_flush();
+            flush();
+            $current_time += 1;
+            sleep(1);
+        }
         echo "data: " . json_encode(['text' => 'close']) . "\n\n";
     }
 }
