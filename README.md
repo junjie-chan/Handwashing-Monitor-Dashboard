@@ -225,21 +225,6 @@ python3 run.py
 
 - [Bubbles Animation][bubbles-animation-url]
 
-# 9.0. Contact Information
-
-<div align="center">
-
-|     Name      |         Email          |
-| :-----------: | :--------------------: |
-| Andreas Wiora |   a.wiora@uq.net.au    |
-|  Junjie Chen  | junjie.chen1@uq.net.au |
-|  LungYu Lin   |  lungyu.lin@uq.net.au  |
-| SiewHui Chun  | siewhui.chun@uq.net.au |
-|   YuHan Hua   |  yuhan.hua@uq.net.au   |
-|  Zixuan Cao   |  zixuan.cao@uq.net.au  |
-
-</div>
-
 <!-- Code References -->
 
 [donut-charts]: https://www.w3schools.com/js/tryit.asp?filename=trychartjs_doughnut
