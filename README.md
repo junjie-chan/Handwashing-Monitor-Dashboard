@@ -39,8 +39,7 @@
          <a href="#version-134">Version 1.3.4</a></br>
          <a href="#version-21317">Version 2.13.17</a></br>
          <a href="#version-4">Version 4</a></br>
-      </ol>
-      <a href="#90-contact-information">9.0. Contact Information</a></br>
+      </ol></br>
    </ol>
 </details>
 
