@@ -15,7 +15,7 @@
          <a href="#41-install--setup-xampp">4.1. Install & Setup XAMPP</a></br>
          <a href="#42-modify-configurations">4.2. Modify Configurations</a></br>
       </ol>
-      <a href="#50-usage">5.0. Usage</a>
+      <a href="#50-usage">5.0 Usage</a>
       <ol>
          <a href="#51-navigation-flow">5.1. Navigation Flow</a></br>
          <a href="#52-navigation-steps">5.2. Navigation Steps</a></br>
@@ -27,14 +27,14 @@
          <a href="#63-prerequisites">6.3 Usage</a></br>
          <a href="#64-prerequisites">6.4 Troubleshooting</a></br>
       </ol>
-      <a href="#70-roadmap">7.0. Roadmap</a>
+      <a href="#70-roadmap">7.0 Roadmap</a>
       <ol>
          <a href="#version-40-current-multiple-dashboard-modes">7.1. Version 4.0 (Current) Multiple Dashboard Modes</a></br>
          <a href="#version-383-fully-functioning-full-stack-prototype">7.2. Version 3.8.3 Fully Functioning Full-Stack Prototype</a></br>
          <a href="#version-21317-ui-design-data-generation-and-real-life-simulation-at-front-end">7.3. Version 2.13.17 UI Design, Data Generation, and Real Life Simulation at Front End</a></br>
          <a href="#version-134-fundamental-structure">7.4. Version 1.3.4 Fundamental Structure</a></br>
       </ol>
-      <a href="#80-code-references">8.0. Code References</a></br>
+      <a href="#80-code-references">8.0 Code References</a></br>
       <ol>
          <a href="#version-134">Version 1.3.4</a></br>
          <a href="#version-21317">Version 2.13.17</a></br>
@@ -106,7 +106,7 @@ The CodeIgniter 4 framework with Model-View-Controller (MVC) architecture is app
 
 4. Uncomment local settings at `/lazycc/app/Views/dashboard_2.php`
 
-# 5.0. Usage
+# 5.0 Usage
 
 ## 5.1. Navigation Flow
 
@@ -125,7 +125,7 @@ The CodeIgniter 4 framework with Model-View-Controller (MVC) architecture is app
    - Nurses Dashboard: _**nurses**_
    - Higher-ups Dashboard: _**higherups**_
 
-# Installation (Hardware)
+# 6.0 Installation (Hardware)
 
 ## Prerequisites
 
@@ -150,7 +150,7 @@ python3 run.py
 - Depending on the installed OS, edit the /dev path in the /hardware/driver_X, the default is /dev/ttyS0
 - Verify the server URL and network connection.
 
-# 7.0. Roadmap
+# 7.0 Roadmap
 
 ## Version 4.0 (Current) Multiple Dashboard Modes
 
@@ -202,7 +202,7 @@ python3 run.py
 
 <input type="checkbox" checked> Feature 2: Charts and texts for fundamental dashboard structure with minimum styling
 
-# 8.0. Code References
+# 8.0 Code References
 
 ## Version 1.3.4
 
