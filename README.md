@@ -119,11 +119,19 @@ The CodeIgniter 4 framework with Model-View-Controller (MVC) architecture is app
 1. Open browser and type in the URL
 
    - Local URL: http://localhost:8080/lazycc/public
-   - Remote URL: https://deco3801-lazycc.uqcloud.net/lazycc/
+      <p align="center">
+      <img src="public/images/dashboard_1.png" alt="Image Description">
+      </p>
 
 2. Enter access codes to view 2 different dashboards
    - Nurses Dashboard: _**nurses**_
+      <p align="center">
+      <img src="public/images/dashboard_3.png" alt="Image Description">
+      </p>
    - Higher-ups Dashboard: _**higherups**_
+      <p align="center">
+      <img src="public/images/dashboard_2.png" alt="Image Description">
+      </p>
 
 # 6.0 Installation (Hardware)
 
